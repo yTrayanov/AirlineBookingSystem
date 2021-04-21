@@ -29,9 +29,9 @@ namespace AirlineBookingSystem.Models
             }
             set
             {
-                if (value > ModelConstants.MaxSectionRows)
+                if (value > ModelConstants.MaxSectionRows || value < ModelConstants.MinSectionRows)
                 {
-                    throw new ArgumentException("There can't be more than 100 rows");
+                    throw new ArgumentException($"There can't be more than {ModelConstants.MaxSectionRows} and less than {ModelConstants.MinSectionRows}");
                 }
                 this._rows = value;
             }
@@ -44,9 +44,9 @@ namespace AirlineBookingSystem.Models
             }
             set
             {
-                if (value > ModelConstants.MaxSectionColumns)
+                if (value > ModelConstants.MaxSectionColumns || value < ModelConstants.MinSectionColumns)
                 {
-                    throw new ArgumentException("There can't be more than 10 columns");
+                    throw new ArgumentException($"There can't be more than {ModelConstants.MaxSectionColumns} and less than {ModelConstants.MinSectionColumns} columns");
                 }
                 this._columns = value;
             }

@@ -140,5 +140,27 @@ namespace AirlineBookingSystem
             }
 
         }
+
+        public void AddNewSeats(string airlineName , string flightId , string rows , string cols , SeatClass seatClass)
+        {
+            try
+            {
+                int parsedRows;
+                int parsedCols;
+
+                if(!int.TryParse(rows, out parsedRows) || !int.TryParse(cols , out parsedCols))
+                {
+                    throw new ArgumentException("Extra rows and extra cols should be a number");
+                }
+
+                this.sectionService.AddSeatsToSection(airlineName, flightId, parsedRows, parsedCols, seatClass);
+
+                Console.WriteLine($"Successfully added {rows} rows and {cols} coloumns to flight {flightId}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
     }
 }

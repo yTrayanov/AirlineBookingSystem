@@ -59,6 +59,10 @@ namespace AirlineBookingSystem
 
             systemManager.DisplaySystemDetails();
 
+            systemManager.AddNewSeats("DELTA", "2222", "1", "1", SeatClass.bussiness);
+            systemManager.AddNewSeats("DELTA", "2222", "1", "1", SeatClass.economy);
+            Console.WriteLine();
+
 
         }
     }
