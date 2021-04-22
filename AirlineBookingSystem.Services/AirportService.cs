@@ -1,4 +1,5 @@
-﻿using AirlineBookingSystem.Models;
+﻿using AirlineBookingSystem.Data;
+using AirlineBookingSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,11 @@ namespace AirlineBookingSystem.Services
 {
     public class AirportService : Service
     {
-        public void CreateAirport(string name)
+        public AirportService(BaseContext context) : base(context)
+        {
+        }
+
+        public Airport CreateAirport(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -20,7 +25,11 @@ namespace AirlineBookingSystem.Services
                 throw new ArgumentException("Airport already exists!");
             }
 
-            this.Context.Airports.Add(new Airport(name));
+            var newAirport = new Airport(name);
+
+            this.Context.Airports.Add(newAirport);
+
+            return newAirport;
         }
 
         public Airport GetAirportByName(string name)

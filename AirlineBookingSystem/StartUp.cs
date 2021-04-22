@@ -39,7 +39,7 @@ namespace AirlineBookingSystem
             systemManager.CreateFlight("DD", "NYC", "AAA", "2022", "9", "1", "123");
             systemManager.CreateFlight("DELTA", "NYC", "AAA", "2022", "9", "6", "1234");
             systemManager.CreateFlight("DELTA", "AAA", "BBB", "2025", "2", "16", "2222");
-            systemManager.CreateFlight("HAHAHA", "BBB", "CCC", "2050" ,"12", "31", "1111");
+            systemManager.CreateFlight("HAHAHA", "BBB", "CCC", "2050", "12", "31", "1111");
             Console.WriteLine();
 
             systemManager.CreateSection("", "", "", "", SeatClass.bussiness);
@@ -50,7 +50,7 @@ namespace AirlineBookingSystem
             systemManager.CreateSection("DELTA", "2222", "1", "1", SeatClass.bussiness);
             Console.WriteLine();
 
-            systemManager.FindAvailableFlights("NYC" , "AAA");
+            systemManager.FindAvailableFlights("NYC", "AAA");
             Console.WriteLine();
 
             systemManager.BookSeat("DD", "123", SeatClass.first, "101", "A");

@@ -1,4 +1,5 @@
-﻿using AirlineBookingSystem.Models;
+﻿using AirlineBookingSystem.Data;
+using AirlineBookingSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,13 @@ namespace AirlineBookingSystem.Services
 {
     public class SectionService : Service
     {
-        private FlightService flightService = new FlightService();
+        private FlightService flightService;
+
+        public SectionService(BaseContext context) : base(context)
+        {
+            this.flightService = new FlightService(context);
+        }
+
         public FlightSection CreateSection(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
             Flight flight = flightService.GetFlightByIdAndAirline(flightId, airlineName);

@@ -1,4 +1,5 @@
-﻿using AirlineBookingSystem.Models;
+﻿using AirlineBookingSystem.Data;
+using AirlineBookingSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,11 @@ namespace AirlineBookingSystem.Services
 {
     public class AirlineService: Service
     {
-        public void CreateNewAirline(string name)
+        public AirlineService(BaseContext context) : base(context)
+        {
+        }
+
+        public Airline CreateNewAirline(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -19,7 +24,11 @@ namespace AirlineBookingSystem.Services
                 throw new ArgumentException("Airline already exists!");
             }
 
-            this.Context.Airlines.Add(new Airline(name));
+            Airline newAirline = new Airline(name);
+
+            this.Context.Airlines.Add(newAirline);
+
+            return newAirline;
         }
 
         public Airline GetAirlineByName(string name)

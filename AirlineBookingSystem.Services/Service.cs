@@ -7,11 +7,11 @@ namespace AirlineBookingSystem.Services
 {
     public class Service
     {
-        public Service()
+        protected Service(BaseContext context)
         {
-            this.Context = AirlineBookingContext.GetContext();
+            this.Context = context;
         }
 
-        public AirlineBookingContext Context { get; set; }
+        public BaseContext Context { get; set; }
     }
 }

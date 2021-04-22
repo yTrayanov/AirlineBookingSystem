@@ -15,5 +15,7 @@ namespace AirlineBookingSystem.Models.Common
         public static readonly int AirportNameLength = 3;
         public static readonly int AirlineNameMaxLegth = 6;
 
+        public static readonly string NamePattern = "^[A-Z]+$";
+
     }
 }

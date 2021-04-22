@@ -27,6 +27,11 @@ namespace AirlineBookingSystem.Models
                 {
                     throw new ArgumentException("Airline name is required and must be less than 6 alphabetic symbols");
                 }
+                if(value.Contains(" "))
+                {
+                    throw new ArgumentException("Airline name can't contain whitespaces");
+                }
+
                 this._name = value;
             }
         }

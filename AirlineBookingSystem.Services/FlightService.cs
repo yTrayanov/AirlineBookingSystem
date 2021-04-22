@@ -1,4 +1,5 @@
-﻿using AirlineBookingSystem.Models;
+﻿using AirlineBookingSystem.Data;
+using AirlineBookingSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,15 @@ namespace AirlineBookingSystem.Services
 {
     public class FlightService:Service
     {
-        private AirlineService _airlineService = new AirlineService();
-        private AirportService _airportService = new AirportService();
+        private AirlineService _airlineService;
+        private AirportService _airportService;
+
+        public FlightService(BaseContext context) : base(context)
+        {
+            this._airlineService = new AirlineService(context);
+            this._airportService = new AirportService(context);
+        }
+
         public void CreateFlight(string airlineName, string originAirportName,
             string destinationAirportName, string year, string month, string day, string flightId)
         {

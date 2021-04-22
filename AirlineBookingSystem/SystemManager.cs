@@ -1,4 +1,5 @@
-﻿using AirlineBookingSystem.Models;
+﻿using AirlineBookingSystem.Data;
+using AirlineBookingSystem.Models;
 using AirlineBookingSystem.Services;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,10 @@ namespace AirlineBookingSystem
 {
     public class SystemManager
     {
-        private AirlineService airlineService = new AirlineService();
-        private AirportService airportService = new AirportService();
-        private FlightService flightService = new FlightService();
-        private SectionService sectionService = new SectionService();
+        private AirlineService airlineService = new AirlineService(AirlineBookingContext.GetContext());
+        private AirportService airportService = new AirportService(AirlineBookingContext.GetContext());
+        private FlightService flightService = new FlightService(AirlineBookingContext.GetContext());
+        private SectionService sectionService = new SectionService(AirlineBookingContext.GetContext());
 
 
 
