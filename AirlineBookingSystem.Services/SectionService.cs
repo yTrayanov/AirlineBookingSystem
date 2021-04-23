@@ -1,24 +1,22 @@
-﻿using AirlineBookingSystem.Data;
-using AirlineBookingSystem.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AirlineBookingSystem.Services
+﻿namespace AirlineBookingSystem.Services
 {
+    using AirlineBookingSystem.Data;
+    using AirlineBookingSystem.Models;
+    using System;
+    using System.Linq;
+
     public class SectionService : Service
     {
-        private FlightService flightService;
+        private FlightService _flightService;
 
         public SectionService(BaseContext context) : base(context)
         {
-            this.flightService = new FlightService(context);
+            this._flightService = new FlightService(context);
         }
 
         public FlightSection CreateAndAddNewSectionToFlight(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
-            Flight flight = flightService.GetFlightByIdAndAirline(flightId, airlineName);
+            Flight flight = _flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
             FlightSection section = new FlightSection(rows, cols, seatClass);
             CheckIfFlightContainsSectionAndAddNewSection(seatClass, flight, section);
@@ -27,13 +25,12 @@ namespace AirlineBookingSystem.Services
 
         }
 
-        
 
         public Seat BookSeat(string airlineName , string flightId , SeatClass seatClass ,int row , char colSymbol)
         {
-            Flight flight = this.flightService.GetFlightByIdAndAirline(flightId, airlineName);
+            Flight flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
-            FlightSection section = this.flightService.GetFlightSection(seatClass, flight);
+            FlightSection section = this._flightService.GetFlightSection(seatClass, flight);
 
             if (section == null)
             {
@@ -68,7 +65,7 @@ namespace AirlineBookingSystem.Services
 
         public FlightSection AddSeatsToSection(string airlineName , string flightId , int extraRows , int extraCols , SeatClass seatClass)
         {
-            var flight = this.flightService.GetFlightByIdAndAirline(flightId, airlineName);
+            var flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
             if(flight == null)
             {

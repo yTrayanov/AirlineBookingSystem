@@ -1,16 +1,14 @@
-﻿using AirlineBookingSystem.Models.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AirlineBookingSystem.Models
+﻿namespace AirlineBookingSystem.Models
 {
+    using AirlineBookingSystem.Common;
+    using System;
+
     public class FlightSection
     {
         private int _rows;
         private int _columns;
 
-        public FlightSection(int rows , int columns, SeatClass seatClass)
+        public FlightSection(int rows, int columns, SeatClass seatClass)
         {
             this.Rows = rows;
             this.Columns = columns;
@@ -21,7 +19,7 @@ namespace AirlineBookingSystem.Models
 
         public Seat[,] Seats { get; set; }
 
-        public int Rows 
+        public int Rows
         {
             get
             {
@@ -36,7 +34,7 @@ namespace AirlineBookingSystem.Models
                 this._rows = value;
             }
         }
-        public int Columns 
+        public int Columns
         {
             get
             {
@@ -62,11 +60,11 @@ namespace AirlineBookingSystem.Models
             {
                 for (int col = 0; col < this.Columns; col++)
                 {
-                    this.Seats[row, col] = new Seat(row+1,Convert.ToChar(col + 'A'));
+                    this.Seats[row, col] = new Seat(row + 1, Convert.ToChar(col + 'A'));
                 }
             }
 
         }
-        
+
     }
 }

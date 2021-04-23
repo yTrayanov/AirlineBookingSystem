@@ -1,10 +1,8 @@
-﻿using AirlineBookingSystem.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AirlineBookingSystem.Tests.TestData
+﻿namespace AirlineBookingSystem.Tests.TestData
 {
+    using AirlineBookingSystem.Common;
+    using System.Collections.Generic;
+
     public static class FlightData
     {
         public static IEnumerable<object[]> ValidFlightData()

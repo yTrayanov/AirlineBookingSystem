@@ -7,3 +7,6 @@ C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.M
 C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.Models\obj\Debug\netcoreapp3.1\AirlineBookingSystem.Models.csproj.CoreCompileInputs.cache
 C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.Models\obj\Debug\netcoreapp3.1\AirlineBookingSystem.Models.dll
 C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.Models\obj\Debug\netcoreapp3.1\AirlineBookingSystem.Models.pdb
+C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.Models\bin\Debug\netcoreapp3.1\AirlineBookingSystem.Common.dll
+C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.Models\bin\Debug\netcoreapp3.1\AirlineBookingSystem.Common.pdb
+C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.Models\obj\Debug\netcoreapp3.1\AirlineBookingSystem.Models.csproj.CopyComplete

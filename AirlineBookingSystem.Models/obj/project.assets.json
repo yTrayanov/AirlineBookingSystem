@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "AirlineBookingSystem.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/AirlineBookingSystem.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AirlineBookingSystem.Common.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "AirlineBookingSystem.Common/1.0.0": {
+      "type": "project",
+      "path": "../AirlineBookingSystem.Common/AirlineBookingSystem.Common.csproj",
+      "msbuildProject": "../AirlineBookingSystem.Common/AirlineBookingSystem.Common.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "AirlineBookingSystem.Common >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Yavor Trayanov\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Yavor Trayanov\\source\\repos\\AirlineBookingSystem\\AirlineBookingSystem.Common\\AirlineBookingSystem.Common.csproj": {
+              "projectPath": "C:\\Users\\Yavor Trayanov\\source\\repos\\AirlineBookingSystem\\AirlineBookingSystem.Common\\AirlineBookingSystem.Common.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

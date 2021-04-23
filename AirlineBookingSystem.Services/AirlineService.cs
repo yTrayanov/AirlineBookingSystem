@@ -1,18 +1,17 @@
-﻿using AirlineBookingSystem.Data;
-using AirlineBookingSystem.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace AirlineBookingSystem.Services
+﻿namespace AirlineBookingSystem.Services
 {
+    using AirlineBookingSystem.Data;
+    using AirlineBookingSystem.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     public class AirlineService: Service
     {
         public AirlineService(BaseContext context) : base(context)
         {
         }
 
-        public Airline CreateNewAirline(string name)
+        public Airline CreateAirline(string name)
         {
             if (string.IsNullOrEmpty(name))
             {

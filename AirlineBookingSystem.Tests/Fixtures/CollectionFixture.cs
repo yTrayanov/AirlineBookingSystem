@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
-
-namespace AirlineBookingSystem.Tests.Fixtures
+﻿namespace AirlineBookingSystem.Tests.Fixtures
 {
+    using Xunit;
+
     [CollectionDefinition("TestCollection")]
     public class CollectionFixture:ICollectionFixture<DatabaseFixture>
     {

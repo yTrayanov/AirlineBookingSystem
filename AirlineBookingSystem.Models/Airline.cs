@@ -1,10 +1,10 @@
-﻿using AirlineBookingSystem.Models.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AirlineBookingSystem.Models
+﻿namespace AirlineBookingSystem.Models
 {
+    using AirlineBookingSystem.Common;
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+
     public class Airline
     {
         private string _name;
@@ -27,9 +27,9 @@ namespace AirlineBookingSystem.Models
                 {
                     throw new ArgumentException("Airline name is required and must be less than 6 alphabetic symbols");
                 }
-                if(value.Contains(" "))
+                if(!Regex.Match(value , ModelConstants.NamePattern).Success)
                 {
-                    throw new ArgumentException("Airline name can't contain whitespaces");
+                    throw new ArgumentException("Name should contain only uppercased letters!");
                 }
 
                 this._name = value;

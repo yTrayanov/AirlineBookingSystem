@@ -1,12 +1,10 @@
-﻿using AirlineBookingSystem.Common;
-using AirlineBookingSystem.Models;
-using AirlineBookingSystem.Models.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AirlineBookingSystem.Tests.TestData
+﻿namespace AirlineBookingSystem.Tests.TestData
 {
+    using AirlineBookingSystem.Common;
+    using AirlineBookingSystem.Models;
+    using System;
+    using System.Collections.Generic;
+
     public static class SectionData
     {
 

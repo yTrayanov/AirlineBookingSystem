@@ -1,14 +1,14 @@
-﻿using AirlineBookingSystem.Common;
-using AirlineBookingSystem.Models;
-using AirlineBookingSystem.Services;
-using AirlineBookingSystem.Tests.Fixtures;
-using AirlineBookingSystem.Tests.TestData;
-using System;
-using System.Linq;
-using Xunit;
-
-namespace AirlineBookingSystem.Tests
+﻿namespace AirlineBookingSystem.Tests
 {
+    using AirlineBookingSystem.Common;
+    using AirlineBookingSystem.Models;
+    using AirlineBookingSystem.Services;
+    using AirlineBookingSystem.Tests.Fixtures;
+    using AirlineBookingSystem.Tests.TestData;
+    using System;
+    using System.Linq;
+    using Xunit;
+
     public class SectionServiceTests : BaseTest
     {
 
@@ -82,6 +82,26 @@ namespace AirlineBookingSystem.Tests
         {
             Assert.Throws<ArgumentException>(
                 () => this._sectionService.AddSeatsToSection(airlineName, flightId, extraRows, extraCols, seatClass));
+        }
+
+        [Fact]
+        public void FlightHasNoAvailableSeatsAfterFullyBooked()
+        {
+            Flight flight = this.Context.Flights.FirstOrDefault(f => f.Id == ConstantTestData.FullFlight);
+
+            FlightSection  section = flight.Sections.FirstOrDefault(s => s.SeatClass == SeatClass.first);
+
+            Assert.True(flight.hasAvalableSeats);
+
+            for (int row = 0; row < section.Seats.GetLength(0); row++)
+            {
+                for (int col = 0; col < section.Seats.GetLength(1); col++)
+                {
+                    section.Seats[row, col].IsBooked = true;
+                }
+            }
+
+            Assert.False(flight.hasAvalableSeats);
         }
     }
 }

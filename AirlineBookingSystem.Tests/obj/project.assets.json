@@ -929,6 +929,9 @@
       "AirlineBookingSystem.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "AirlineBookingSystem.Common": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/AirlineBookingSystem.Models.dll": {}
         },

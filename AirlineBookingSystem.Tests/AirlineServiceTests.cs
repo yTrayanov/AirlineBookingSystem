@@ -1,12 +1,11 @@
-using AirlineBookingSystem.Models;
-using AirlineBookingSystem.Services;
-using AirlineBookingSystem.Tests.Fixtures;
-using AirlineBookingSystem.Tests.TestData;
-using System;
-using Xunit;
-
 namespace AirlineBookingSystem.Tests
 {
+    using AirlineBookingSystem.Models;
+    using AirlineBookingSystem.Services;
+    using AirlineBookingSystem.Tests.Fixtures;
+    using AirlineBookingSystem.Tests.TestData;
+    using System;
+    using Xunit;
     public class AirlineServiceTests : BaseTest
     {
         private AirlineService _airlineService;
@@ -21,7 +20,7 @@ namespace AirlineBookingSystem.Tests
         public void CreatingAirlineWithValidData(string airlineName)
         {
 
-            Airline airline = this._airlineService.CreateNewAirline(airlineName);
+            Airline airline = this._airlineService.CreateAirline(airlineName);
 
             Assert.Contains(airline, this.Context.Airlines);
 
@@ -33,7 +32,7 @@ namespace AirlineBookingSystem.Tests
         public void CreatingAirlineWithInvalidData(string airlineName)
         {
             Assert.Throws<ArgumentException>(
-                () => this._airlineService.CreateNewAirline(airlineName));
+                () => this._airlineService.CreateAirline(airlineName));
         }
 
         [Theory]
@@ -42,7 +41,7 @@ namespace AirlineBookingSystem.Tests
         {
             
 
-            Airline airline = this._airlineService.CreateNewAirline(name);
+            Airline airline = this._airlineService.CreateAirline(name);
 
             Assert.Same(airline, this._airlineService.GetAirlineByName(name));
 

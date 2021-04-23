@@ -142,7 +142,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Yavor Trayanov\\source\\repos\\AirlineBookingSystem\\AirlineBookingSystem.Common\\AirlineBookingSystem.Common.csproj": {
+                "projectPath": "C:\\Users\\Yavor Trayanov\\source\\repos\\AirlineBookingSystem\\AirlineBookingSystem.Common\\AirlineBookingSystem.Common.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

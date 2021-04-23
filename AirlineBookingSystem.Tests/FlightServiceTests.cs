@@ -1,14 +1,14 @@
-﻿using AirlineBookingSystem.Common;
-using AirlineBookingSystem.Models;
-using AirlineBookingSystem.Services;
-using AirlineBookingSystem.Tests.Fixtures;
-using AirlineBookingSystem.Tests.TestData;
-using System;
-using System.Linq;
-using Xunit;
-
-namespace AirlineBookingSystem.Tests
+﻿namespace AirlineBookingSystem.Tests
 {
+    using AirlineBookingSystem.Common;
+    using AirlineBookingSystem.Models;
+    using AirlineBookingSystem.Services;
+    using AirlineBookingSystem.Tests.Fixtures;
+    using AirlineBookingSystem.Tests.TestData;
+    using System;
+    using System.Linq;
+    using Xunit;
+
     public class FlightServiceTests:BaseTest
     {
         private FlightService _flightService;

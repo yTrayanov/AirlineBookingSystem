@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AirlineBookingSystem.Models
+﻿namespace AirlineBookingSystem.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     public class Flight
     {
         private Airport _destinationAirtport;

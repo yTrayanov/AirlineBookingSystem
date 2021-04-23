@@ -1,19 +1,20 @@
-﻿using AirlineBookingSystem.Data;
-using AirlineBookingSystem.Models;
-using AirlineBookingSystem.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AirlineBookingSystem
+﻿namespace AirlineBookingSystem
 {
+    using AirlineBookingSystem.Data;
+    using AirlineBookingSystem.Models;
+    using AirlineBookingSystem.Services;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class SystemManager
     {
-        private AirlineService airlineService = new AirlineService(AirlineBookingContext.GetContext());
-        private AirportService airportService = new AirportService(AirlineBookingContext.GetContext());
-        private FlightService flightService = new FlightService(AirlineBookingContext.GetContext());
-        private SectionService sectionService = new SectionService(AirlineBookingContext.GetContext());
+        private static BaseContext _context = AirlineBookingContext.GetContext();
+
+        private AirlineService airlineService = new AirlineService(_context);
+        private AirportService airportService = new AirportService(_context);
+        private FlightService flightService = new FlightService(_context);
+        private SectionService sectionService = new SectionService(_context);
 
 
 
@@ -34,7 +35,7 @@ namespace AirlineBookingSystem
         {
             try
             {
-                this.airlineService.CreateNewAirline(name);
+                this.airlineService.CreateAirline(name);
                 Console.WriteLine("Successfully created airline " + name);
             }
             catch (Exception e)
@@ -71,6 +72,7 @@ namespace AirlineBookingSystem
                 }
 
                 this.sectionService.CreateAndAddNewSectionToFlight(airlineName, flightId, parsedRows, parsedColumns, seatClass);
+
                 Console.WriteLine($"Successfully created {seatClass} section for flight {flightId}");
             }
             catch (Exception e)

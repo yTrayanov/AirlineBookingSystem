@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AirlineBookingSystem.Tests.TestData
+﻿namespace AirlineBookingSystem.Tests.TestData
 {
+    using System.Collections.Generic;
     public static class AirlineData
     {
 
@@ -21,6 +18,9 @@ namespace AirlineBookingSystem.Tests.TestData
             yield return new string[] { "" };
             yield return new string[] { null };
             yield return new string[] { "   " };
+            yield return new string[] { "123" };
+            yield return new string[] { "AAA AA" };
+
         }
     }
 }

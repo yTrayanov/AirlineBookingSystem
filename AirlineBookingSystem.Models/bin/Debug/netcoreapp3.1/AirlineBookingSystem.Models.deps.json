@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v3.1": {
       "AirlineBookingSystem.Models/1.0.0": {
+        "dependencies": {
+          "AirlineBookingSystem.Common": "1.0.0"
+        },
         "runtime": {
           "AirlineBookingSystem.Models.dll": {}
+        }
+      },
+      "AirlineBookingSystem.Common/1.0.0": {
+        "runtime": {
+          "AirlineBookingSystem.Common.dll": {}
         }
       }
     }
   },
   "libraries": {
     "AirlineBookingSystem.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AirlineBookingSystem.Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,9 +1,9 @@
-﻿using AirlineBookingSystem.Data;
-using AirlineBookingSystem.Tests.Fixtures;
-using Xunit;
-
-namespace AirlineBookingSystem.Tests
+﻿namespace AirlineBookingSystem.Tests
 {
+    using AirlineBookingSystem.Data;
+    using AirlineBookingSystem.Tests.Fixtures;
+    using Xunit;
+
     [Collection("TestCollection")]
     public abstract class BaseTest
     {

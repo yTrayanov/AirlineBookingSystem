@@ -1,13 +1,10 @@
-﻿using AirlineBookingSystem.Common;
-using AirlineBookingSystem.Data;
-using AirlineBookingSystem.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
-
-namespace AirlineBookingSystem.Tests.Fixtures
+﻿namespace AirlineBookingSystem.Tests.Fixtures
 {
+    using AirlineBookingSystem.Common;
+    using AirlineBookingSystem.Data;
+    using AirlineBookingSystem.Models;
+    using System;
+
     public class DatabaseFixture :IDisposable
     {
         public DatabaseFixture()
@@ -30,7 +27,12 @@ namespace AirlineBookingSystem.Tests.Fixtures
 
             Flight flight = new Flight(airline, originAirport, destinationAirport, new DateTime(3000, 12, 1), ConstantTestData.FlightId);
 
+            Flight fullFlight = new Flight(airline, originAirport, destinationAirport, new DateTime(3000, 12, 1), ConstantTestData.FullFlight);
+
+            fullFlight.Sections.Add(new FlightSection(ConstantTestData.FlightSectionRows, ConstantTestData.FlightSectionColumns, SeatClass.first));
+
             FlightSection section = new FlightSection(ConstantTestData.FlightSectionRows, ConstantTestData.FlightSectionColumns, SeatClass.first);
+
 
             flight.Sections.Add(section);
             airline.Flights.Add(flight);
@@ -44,6 +46,7 @@ namespace AirlineBookingSystem.Tests.Fixtures
             this.Context.Airlines.Add(airline);
 
             this.Context.Flights.Add(flight);
+            this.Context.Flights.Add(fullFlight);
 
         }
 

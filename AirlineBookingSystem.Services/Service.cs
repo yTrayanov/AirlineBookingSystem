@@ -1,10 +1,7 @@
-﻿using AirlineBookingSystem.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AirlineBookingSystem.Services
+﻿namespace AirlineBookingSystem.Services
 {
+    using AirlineBookingSystem.Data;
+
     public class Service
     {
         protected Service(BaseContext context)

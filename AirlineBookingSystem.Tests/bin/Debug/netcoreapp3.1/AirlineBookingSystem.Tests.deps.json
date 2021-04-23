@@ -705,6 +705,9 @@
         }
       },
       "AirlineBookingSystem.Models/1.0.0": {
+        "dependencies": {
+          "AirlineBookingSystem.Common": "1.0.0"
+        },
         "runtime": {
           "AirlineBookingSystem.Models.dll": {}
         }

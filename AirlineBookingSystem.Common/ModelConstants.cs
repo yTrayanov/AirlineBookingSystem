@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AirlineBookingSystem.Models.Common
+namespace AirlineBookingSystem.Common
 {
     public static class ModelConstants
     {
