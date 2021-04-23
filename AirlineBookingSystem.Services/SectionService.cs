@@ -20,12 +20,14 @@ namespace AirlineBookingSystem.Services
         {
             Flight flight = flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
-            FlightSection section = new FlightSection(rows, cols, seatClass);
-
-            if (flight.Sections.Contains(section))
+            if (flight.Sections.Any(s => s.SeatClass == seatClass))
             {
                 throw new ArgumentException("Section already exists");
             }
+
+            FlightSection section = new FlightSection(rows, cols, seatClass);
+
+            
 
 
             flight.Sections.Add(section);
@@ -34,7 +36,7 @@ namespace AirlineBookingSystem.Services
 
         }
 
-        public void BookSeat(string airlineName , string flightId , SeatClass seatClass ,int row , char colSymbol)
+        public Seat BookSeat(string airlineName , string flightId , SeatClass seatClass ,int row , char colSymbol)
         {
             Flight flight = this.flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
@@ -58,6 +60,8 @@ namespace AirlineBookingSystem.Services
                 {
                     seat.IsBooked = true;
                 }
+
+                return seat;
             }
             catch (IndexOutOfRangeException)
             {
@@ -69,7 +73,7 @@ namespace AirlineBookingSystem.Services
             }
         }
 
-        public void AddSeatsToSection(string airlineName , string flightId , int extraRows , int extraCols , SeatClass seatClass)
+        public FlightSection AddSeatsToSection(string airlineName , string flightId , int extraRows , int extraCols , SeatClass seatClass)
         {
             var flight = this.flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
@@ -104,6 +108,9 @@ namespace AirlineBookingSystem.Services
                     newSection.Seats[row, col] = oldSection.Seats[row, col];
                 }
             }
+
+
+            return newSection;
 
         }
     }

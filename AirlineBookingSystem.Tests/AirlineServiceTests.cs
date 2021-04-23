@@ -9,14 +9,14 @@ namespace AirlineBookingSystem.Tests
 {
     public class AirlineServiceTests : BaseTest
     {
-        private AirlineService airlineService = new AirlineService(AirlineBookingTestContext.GetContext());
+        private AirlineService _airlineService = new AirlineService(AirlineBookingTestContext.GetContext());
 
         [Theory]
         [MemberData(nameof(AirlineData.ValidAirlineData) , MemberType =typeof(AirlineData))]
         public void CreatingAirlineWithValidData(string airlineName)
         {
 
-            Airline airline = this.airlineService.CreateNewAirline(airlineName);
+            Airline airline = this._airlineService.CreateNewAirline(airlineName);
 
             Assert.Contains(airline, this.Context.Airlines);
 
@@ -28,7 +28,7 @@ namespace AirlineBookingSystem.Tests
         public void CreatingAirlineWithInvalidData(string airlineName)
         {
             Assert.Throws<ArgumentException>(
-                () => this.airlineService.CreateNewAirline(airlineName));
+                () => this._airlineService.CreateNewAirline(airlineName));
         }
 
         [Theory]
@@ -37,9 +37,9 @@ namespace AirlineBookingSystem.Tests
         {
             
 
-            Airline airline = this.airlineService.CreateNewAirline(name);
+            Airline airline = this._airlineService.CreateNewAirline(name);
 
-            Assert.Same(airline, this.airlineService.GetAirlineByName(name));
+            Assert.Same(airline, this._airlineService.GetAirlineByName(name));
 
             this.Context.Airlines.Remove(airline);
         }

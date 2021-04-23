@@ -18,7 +18,7 @@ namespace AirlineBookingSystem.Services
             this._airportService = new AirportService(context);
         }
 
-        public void CreateFlight(string airlineName, string originAirportName,
+        public Flight CreateFlight(string airlineName, string originAirportName,
             string destinationAirportName, string year, string month, string day, string flightId)
         {
             Airline airline = this._airlineService.GetAirlineByName(airlineName);
@@ -40,15 +40,17 @@ namespace AirlineBookingSystem.Services
             airline.Flights.Add(flight);
             this.Context.Flights.Add(flight);
 
+            return flight;
+
         }
 
-        public Flight GetFlightByIdAndAirline(string id , string airline)
+        public Flight GetFlightByIdAndAirline(string flightId , string airlineName)
         {
-            var flight = this.Context.Flights.FirstOrDefault(flight => flight.Id == id && flight.Airline.Name == airline);
+            var flight = this.Context.Flights.FirstOrDefault(flight => flight.Id == flightId && flight.Airline.Name == airlineName);
 
             if(flight == null)
             {
-                throw new ArgumentException($"Flight with number {id} and airline {airline} doesn't exist");
+                throw new ArgumentException($"Flight with number {flightId} and airline {airlineName} doesn't exist");
             }
 
             return flight;

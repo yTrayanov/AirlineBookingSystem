@@ -1,6 +1,7 @@
 ﻿using AirlineBookingSystem.Data;
 using AirlineBookingSystem.Models;
 using AirlineBookingSystem.Services;
+using AirlineBookingSystem.Tests.TestConstants;
 using AirlineBookingSystem.Tests.TestData;
 using System;
 using System.Collections.Generic;
@@ -11,25 +12,34 @@ namespace AirlineBookingSystem.Tests
 {
     public class AirportServiceTests:BaseTest
     {
-        AirportService airportService = new AirportService(AirlineBookingTestContext.GetContext());
+        private AirportService _airportService = new AirportService(AirlineBookingTestContext.GetContext());
 
         [Theory]
         [MemberData(nameof(AirportData.ValidAirportData) , MemberType =typeof(AirportData))]
         public void CreateAirportWithValidData(string name)
         {
-            Airport airport = this.airportService.CreateAirport(name);
+            Airport airport = this._airportService.CreateAirport(name);
 
             Assert.Contains(airport, this.Context.Airports);
 
-            this.Context.Airports.Remove(airport);
         }
 
         [Theory]
         [MemberData(nameof(AirportData.InvalidAirportData) , MemberType =typeof(AirportData))]
-        public void CreatAirportWithInvalidData(string name)
+        public void CreateAirportWithInvalidData(string name)
         {
             Assert.Throws<ArgumentException>(
-                () => this.airportService.CreateAirport(name));
+                () => this._airportService.CreateAirport(name));
+        }
+
+        [Theory]
+        [InlineData(ConstantData.OriginAirport)]
+        [InlineData(ConstantData.DestionationAirport)]
+        public void GetAiportByNameWithValidAirports(string airportName)
+        {
+            Airport airport = this._airportService.GetAirportByName(airportName);
+
+            Assert.Equal(airportName, airport.Name);
         }
     }
 }

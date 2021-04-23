@@ -9,6 +9,7 @@ namespace AirlineBookingSystem.Models
     {
         private Airport _destinationAirtport;
         private DateTime _departureDate;
+        private string _id;
 
         public Flight(Airline airline, Airport originAirport
             , Airport destinationAirport, DateTime departureDate, string id)
@@ -22,7 +23,27 @@ namespace AirlineBookingSystem.Models
 
         }
 
-        public string Id { get; set; }
+        public string Id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Flight id is required");
+                }
+
+                if(value.Contains(" "))
+                {
+                    throw new ArgumentException("Flight id can't contain whitespace");
+                }
+
+                this._id = value;
+            }
+        }
 
         public Airline Airline { get; set; }
         public Airport OriginAirport { get; set; }
@@ -50,7 +71,7 @@ namespace AirlineBookingSystem.Models
         /// </summary>
         public bool hasAvalableSeats
         {
-            get 
+            get
             {
                 if (this.Sections.Any())
                 {

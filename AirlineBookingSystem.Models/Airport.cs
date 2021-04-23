@@ -19,13 +19,13 @@ namespace AirlineBookingSystem.Models
             }
             set
             {
+                if (value.Contains(" "))
+                {
+                    throw new ArgumentException("Airport name can't contain whitespace");
+                }
                 if (value.Length != ModelConstants.AirportNameLength || value.ToUpper() != value)
                 {
                     throw new ArgumentException("Flight name must consist of 3 alphabetic upper cased characters");
-                }
-                if(value.Contains(" "))
-                {
-                    throw new ArgumentException("Airport name can't contain whitespace");
                 }
 
                 this._name = value;

@@ -3,21 +3,22 @@ using AirlineBookingSystem.Models;
 using AirlineBookingSystem.Tests.TestConstants;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Xunit;
 
 namespace AirlineBookingSystem.Tests
 {
-    public abstract class BaseTest 
+    public class DatabaseFixture :IDisposable
     {
-
-        public AirlineBookingTestContext Context = AirlineBookingTestContext.GetContext();
-
-        public BaseTest()
+        public DatabaseFixture()
         {
+            this.Context = AirlineBookingTestContext.GetContext();
             InsertPermanentData();
         }
+
+        public BaseContext Context { get; set; }
+
+       
 
         private void InsertPermanentData()
         {
@@ -44,6 +45,13 @@ namespace AirlineBookingSystem.Tests
 
             this.Context.Flights.Add(flight);
 
+        }
+
+        public void Dispose()
+        {
+            this.Context.Airlines.Clear();
+            this.Context.Airports.Clear();
+            this.Context.Flights.Clear();
         }
     }
 }
