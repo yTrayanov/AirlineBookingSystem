@@ -16,25 +16,18 @@ namespace AirlineBookingSystem.Services
             this.flightService = new FlightService(context);
         }
 
-        public FlightSection CreateSection(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
+        public FlightSection CreateAndAddNewSectionToFlight(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
             Flight flight = flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
-            if (flight.Sections.Any(s => s.SeatClass == seatClass))
-            {
-                throw new ArgumentException("Section already exists");
-            }
-
             FlightSection section = new FlightSection(rows, cols, seatClass);
-
-            
-
-
-            flight.Sections.Add(section);
+            CheckIfFlightContainsSectionAndAddNewSection(seatClass, flight, section);
 
             return section;
 
         }
+
+        
 
         public Seat BookSeat(string airlineName , string flightId , SeatClass seatClass ,int row , char colSymbol)
         {
@@ -94,12 +87,17 @@ namespace AirlineBookingSystem.Services
                 throw new ArgumentException("Addictional rows and cols should be greater than 0");
             }
 
-            flight.Sections.Remove(oldSection);
             var newRows = oldSection.Seats.GetLength(0) + extraRows;
             var newCols = oldSection.Seats.GetLength(1) + extraCols;
 
 
-            var newSection = this.CreateSection(flight.Airline.Name, flight.Id, newRows, newCols, oldSection.SeatClass);
+
+            var newSection = new FlightSection(newRows, newCols, oldSection.SeatClass);
+
+            flight.Sections.Remove(oldSection);
+
+            CheckIfFlightContainsSectionAndAddNewSection(newSection.SeatClass, flight, newSection);
+
 
             for (int row = 0; row < oldSection.Seats.GetLength(0); row++)
             {
@@ -113,5 +111,16 @@ namespace AirlineBookingSystem.Services
             return newSection;
 
         }
+
+        private static void CheckIfFlightContainsSectionAndAddNewSection(SeatClass seatClass, Flight flight, FlightSection section)
+        {
+            if (flight.Sections.Any(s => s.SeatClass == seatClass))
+            {
+                throw new ArgumentException("Section already exists");
+            }
+
+            flight.Sections.Add(section);
+        }
+
     }
 }

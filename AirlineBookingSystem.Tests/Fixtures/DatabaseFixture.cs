@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace AirlineBookingSystem.Tests
+namespace AirlineBookingSystem.Tests.Fixtures
 {
     public class DatabaseFixture :IDisposable
     {

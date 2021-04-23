@@ -63,6 +63,8 @@ namespace AirlineBookingSystem
             systemManager.AddNewSeats("DELTA", "2222", "1", "1", SeatClass.economy);
             Console.WriteLine();
 
+            systemManager.FindAvailableFlights("NYC" , "AAA");
+
 
         }
     }

@@ -1,11 +1,10 @@
 ﻿using AirlineBookingSystem.Common;
 using AirlineBookingSystem.Models;
 using AirlineBookingSystem.Services;
+using AirlineBookingSystem.Tests.Fixtures;
 using AirlineBookingSystem.Tests.TestData;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace AirlineBookingSystem.Tests
@@ -24,7 +23,7 @@ namespace AirlineBookingSystem.Tests
         [MemberData(nameof(SectionData.ValidSectionData) , MemberType =typeof(SectionData))]
         public void CreateSectionWithValidData(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
-            FlightSection section = this._sectionService.CreateSection(airlineName, flightId, rows, cols, seatClass);
+            FlightSection section = this._sectionService.CreateAndAddNewSectionToFlight(airlineName, flightId, rows, cols, seatClass);
 
             var flight = this.Context.Flights.FirstOrDefault(f => f.Id == flightId);
 
@@ -37,7 +36,7 @@ namespace AirlineBookingSystem.Tests
         public void CreateSectionWithInvalidData(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
             Assert.Throws<ArgumentException>(
-                () => this._sectionService.CreateSection(airlineName, flightId, rows, cols, seatClass));
+                () => this._sectionService.CreateAndAddNewSectionToFlight(airlineName, flightId, rows, cols, seatClass));
         }
 
         [Theory]

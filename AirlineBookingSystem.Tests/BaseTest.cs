@@ -1,16 +1,12 @@
 ﻿using AirlineBookingSystem.Data;
-using AirlineBookingSystem.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using AirlineBookingSystem.Tests.Fixtures;
 using Xunit;
 
 namespace AirlineBookingSystem.Tests
 {
-    public abstract class BaseTest:IClassFixture<DatabaseFixture>
+    [Collection("TestCollection")]
+    public abstract class BaseTest
     {
-
 
         public BaseTest(DatabaseFixture fixture)
         {

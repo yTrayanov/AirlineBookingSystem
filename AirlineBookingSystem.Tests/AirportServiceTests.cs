@@ -1,11 +1,9 @@
 ﻿using AirlineBookingSystem.Common;
-using AirlineBookingSystem.Data;
 using AirlineBookingSystem.Models;
 using AirlineBookingSystem.Services;
+using AirlineBookingSystem.Tests.Fixtures;
 using AirlineBookingSystem.Tests.TestData;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace AirlineBookingSystem.Tests

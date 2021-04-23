@@ -1,5 +1,6 @@
 using AirlineBookingSystem.Models;
 using AirlineBookingSystem.Services;
+using AirlineBookingSystem.Tests.Fixtures;
 using AirlineBookingSystem.Tests.TestData;
 using System;
 using Xunit;

@@ -70,7 +70,7 @@ namespace AirlineBookingSystem
                     throw new ArgumentException("Invalid rows or columns");
                 }
 
-                this.sectionService.CreateSection(airlineName, flightId, parsedRows, parsedColumns, seatClass);
+                this.sectionService.CreateAndAddNewSectionToFlight(airlineName, flightId, parsedRows, parsedColumns, seatClass);
                 Console.WriteLine($"Successfully created {seatClass} section for flight {flightId}");
             }
             catch (Exception e)
@@ -91,7 +91,7 @@ namespace AirlineBookingSystem
             {
                 foreach (var flight in flights)
                 {
-                    Console.WriteLine($"FlightNumber:{flight.Id} Departure Date:{flight.DepartureDate}");
+                    Console.WriteLine($"FlightNumber:{flight.Id} Departure Date:{flight.DepartureDate} Airline: {flight.Airline.Name}");
                 }
             }
         }
