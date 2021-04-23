@@ -1,7 +1,7 @@
-﻿using AirlineBookingSystem.Data;
+﻿using AirlineBookingSystem.Common;
+using AirlineBookingSystem.Data;
 using AirlineBookingSystem.Models;
 using AirlineBookingSystem.Services;
-using AirlineBookingSystem.Tests.TestConstants;
 using AirlineBookingSystem.Tests.TestData;
 using System;
 using System.Collections.Generic;
@@ -10,9 +10,14 @@ using Xunit;
 
 namespace AirlineBookingSystem.Tests
 {
-    public class AirportServiceTests:BaseTest
+    public class AirportServiceTests : BaseTest
     {
-        private AirportService _airportService = new AirportService(AirlineBookingTestContext.GetContext());
+        private AirportService _airportService;
+
+        public AirportServiceTests(DatabaseFixture fixture) : base(fixture)
+        {
+            this._airportService = new AirportService(fixture.Context);
+        }
 
         [Theory]
         [MemberData(nameof(AirportData.ValidAirportData) , MemberType =typeof(AirportData))]
@@ -33,8 +38,8 @@ namespace AirlineBookingSystem.Tests
         }
 
         [Theory]
-        [InlineData(ConstantData.OriginAirport)]
-        [InlineData(ConstantData.DestionationAirport)]
+        [InlineData(ConstantTestData.OriginAirport)]
+        [InlineData(ConstantTestData.DestionationAirport)]
         public void GetAiportByNameWithValidAirports(string airportName)
         {
             Airport airport = this._airportService.GetAirportByName(airportName);

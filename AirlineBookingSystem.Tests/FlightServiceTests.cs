@@ -1,7 +1,7 @@
-﻿using AirlineBookingSystem.Data;
+﻿using AirlineBookingSystem.Common;
+using AirlineBookingSystem.Data;
 using AirlineBookingSystem.Models;
 using AirlineBookingSystem.Services;
-using AirlineBookingSystem.Tests.TestConstants;
 using AirlineBookingSystem.Tests.TestData;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,12 @@ namespace AirlineBookingSystem.Tests
 {
     public class FlightServiceTests:BaseTest
     {
-        private FlightService _flightService = new FlightService(AirlineBookingTestContext.GetContext());
+        private FlightService _flightService;
+
+        public FlightServiceTests(DatabaseFixture fixture) : base(fixture)
+        {
+            this._flightService = new FlightService(fixture.Context);
+        }
 
         [Theory]
         [MemberData(nameof(FlightData.ValidFlightData), MemberType =typeof(FlightData))]
@@ -37,7 +42,7 @@ namespace AirlineBookingSystem.Tests
 
 
         [Theory]
-        [InlineData(ConstantData.FlightId , ConstantData.AirlineName)]
+        [InlineData(ConstantTestData.FlightId , ConstantTestData.AirlineName)]
         public void GetFlightByIdAndAirline_WIthValidData(string flightId , string airlineName)
         {
             Flight flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);

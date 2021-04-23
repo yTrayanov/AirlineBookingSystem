@@ -14,8 +14,14 @@
           "AirlineBookingSystem.dll": {}
         }
       },
+      "AirlineBookingSystem.Common/1.0.0": {
+        "runtime": {
+          "AirlineBookingSystem.Common.dll": {}
+        }
+      },
       "AirlineBookingSystem.Data/1.0.0": {
         "dependencies": {
+          "AirlineBookingSystem.Common": "1.0.0",
           "AirlineBookingSystem.Models": "1.0.0"
         },
         "runtime": {
@@ -40,6 +46,11 @@
   },
   "libraries": {
     "AirlineBookingSystem/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AirlineBookingSystem.Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

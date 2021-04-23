@@ -100,3 +100,5 @@ C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.T
 C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.Tests\obj\Debug\netcoreapp3.1\AirlineBookingSystem.Tests.dll
 C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.Tests\obj\Debug\netcoreapp3.1\AirlineBookingSystem.Tests.pdb
 C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.Tests\obj\Debug\netcoreapp3.1\AirlineBookingSystem.Tests.genruntimeconfig.cache
+C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.Tests\bin\Debug\netcoreapp3.1\AirlineBookingSystem.Common.dll
+C:\Users\Yavor Trayanov\source\repos\AirlineBookingSystem\AirlineBookingSystem.Tests\bin\Debug\netcoreapp3.1\AirlineBookingSystem.Common.pdb

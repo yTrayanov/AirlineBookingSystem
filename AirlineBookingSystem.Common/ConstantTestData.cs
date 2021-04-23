@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AirlineBookingSystem.Tests.TestConstants
+namespace AirlineBookingSystem.Common
 {
-    public static class ConstantData
+    public static class ConstantTestData
     {
         public const string OriginAirport = "ORG";
         public const string DestionationAirport = "DES";
@@ -15,6 +13,5 @@ namespace AirlineBookingSystem.Tests.TestConstants
 
         public const int FlightSectionRows = 2;
         public const int FlightSectionColumns = 2;
-
     }
 }

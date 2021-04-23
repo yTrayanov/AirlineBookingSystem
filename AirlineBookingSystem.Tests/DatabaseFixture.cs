@@ -1,6 +1,6 @@
-﻿using AirlineBookingSystem.Data;
+﻿using AirlineBookingSystem.Common;
+using AirlineBookingSystem.Data;
 using AirlineBookingSystem.Models;
-using AirlineBookingSystem.Tests.TestConstants;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,20 +22,20 @@ namespace AirlineBookingSystem.Tests
 
         private void InsertPermanentData()
         {
-            Airport originAirport = new Airport(ConstantData.OriginAirport);
+            Airport originAirport = new Airport(ConstantTestData.OriginAirport);
 
-            Airport destinationAirport = new Airport(ConstantData.DestionationAirport);
+            Airport destinationAirport = new Airport(ConstantTestData.DestionationAirport);
 
-            Airline airline = new Airline(ConstantData.AirlineName);
+            Airline airline = new Airline(ConstantTestData.AirlineName);
 
-            Flight flight = new Flight(airline, originAirport, destinationAirport, new DateTime(3000, 12, 1), ConstantData.FlightId);
+            Flight flight = new Flight(airline, originAirport, destinationAirport, new DateTime(3000, 12, 1), ConstantTestData.FlightId);
 
-            FlightSection section = new FlightSection(ConstantData.FlightSectionRows, ConstantData.FlightSectionColumns, SeatClass.first);
+            FlightSection section = new FlightSection(ConstantTestData.FlightSectionRows, ConstantTestData.FlightSectionColumns, SeatClass.first);
 
             flight.Sections.Add(section);
             airline.Flights.Add(flight);
 
-            section.Seats[ConstantData.FlightSectionRows - 1, ConstantData.FlightSectionColumns - 1].IsBooked = true;
+            section.Seats[ConstantTestData.FlightSectionRows - 1, ConstantTestData.FlightSectionColumns - 1].IsBooked = true;
 
             this.Context.Airports.Add(originAirport);
 

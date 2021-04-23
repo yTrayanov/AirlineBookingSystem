@@ -1,6 +1,6 @@
-﻿using AirlineBookingSystem.Models;
+﻿using AirlineBookingSystem.Common;
+using AirlineBookingSystem.Models;
 using AirlineBookingSystem.Services;
-using AirlineBookingSystem.Tests.TestConstants;
 using AirlineBookingSystem.Tests.TestData;
 using System;
 using System.Collections.Generic;
@@ -15,9 +15,9 @@ namespace AirlineBookingSystem.Tests
 
         private SectionService _sectionService;
 
-        public SectionServiceTests()
+        public SectionServiceTests(DatabaseFixture fixture) : base(fixture)
         {
-            this._sectionService = new SectionService(this.Context);
+            this._sectionService = new SectionService(fixture.Context);
         }
 
         [Theory]
@@ -74,7 +74,7 @@ namespace AirlineBookingSystem.Tests
  
 
             //This seat is booked in the base class and should stay booked even after adding new seats;
-            Assert.True(newSection.Seats[ConstantData.FlightSectionRows - 1, ConstantData.FlightSectionColumns - 1].IsBooked);
+            Assert.True(newSection.Seats[ConstantTestData.FlightSectionRows - 1, ConstantTestData.FlightSectionColumns - 1].IsBooked);
         }
 
         [Theory]

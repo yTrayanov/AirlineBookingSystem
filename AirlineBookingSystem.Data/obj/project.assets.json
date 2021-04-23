@@ -2,6 +2,16 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "AirlineBookingSystem.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/AirlineBookingSystem.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AirlineBookingSystem.Common.dll": {}
+        }
+      },
       "AirlineBookingSystem.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -15,6 +25,11 @@
     }
   },
   "libraries": {
+    "AirlineBookingSystem.Common/1.0.0": {
+      "type": "project",
+      "path": "../AirlineBookingSystem.Common/AirlineBookingSystem.Common.csproj",
+      "msbuildProject": "../AirlineBookingSystem.Common/AirlineBookingSystem.Common.csproj"
+    },
     "AirlineBookingSystem.Models/1.0.0": {
       "type": "project",
       "path": "../AirlineBookingSystem.Models/AirlineBookingSystem.Models.csproj",
@@ -23,6 +38,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "AirlineBookingSystem.Common >= 1.0.0",
       "AirlineBookingSystem.Models >= 1.0.0"
     ]
   },
@@ -53,6 +69,9 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
+            "C:\\Users\\Yavor Trayanov\\source\\repos\\AirlineBookingSystem\\AirlineBookingSystem.Common\\AirlineBookingSystem.Common.csproj": {
+              "projectPath": "C:\\Users\\Yavor Trayanov\\source\\repos\\AirlineBookingSystem\\AirlineBookingSystem.Common\\AirlineBookingSystem.Common.csproj"
+            },
             "C:\\Users\\Yavor Trayanov\\source\\repos\\AirlineBookingSystem\\AirlineBookingSystem.Models\\AirlineBookingSystem.Models.csproj": {
               "projectPath": "C:\\Users\\Yavor Trayanov\\source\\repos\\AirlineBookingSystem\\AirlineBookingSystem.Models\\AirlineBookingSystem.Models.csproj"
             }

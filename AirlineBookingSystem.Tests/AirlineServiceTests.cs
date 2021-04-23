@@ -1,4 +1,3 @@
-using AirlineBookingSystem.Data;
 using AirlineBookingSystem.Models;
 using AirlineBookingSystem.Services;
 using AirlineBookingSystem.Tests.TestData;
@@ -9,7 +8,12 @@ namespace AirlineBookingSystem.Tests
 {
     public class AirlineServiceTests : BaseTest
     {
-        private AirlineService _airlineService = new AirlineService(AirlineBookingTestContext.GetContext());
+        private AirlineService _airlineService;
+
+        public AirlineServiceTests(DatabaseFixture fixture) : base(fixture)
+        {
+            this._airlineService = new AirlineService(fixture.Context);
+        }
 
         [Theory]
         [MemberData(nameof(AirlineData.ValidAirlineData) , MemberType =typeof(AirlineData))]
