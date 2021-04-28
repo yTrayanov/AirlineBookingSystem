@@ -53,6 +53,9 @@ namespace AirlineBookingSystem
             systemManager.FindAvailableFlights("NYC", "AAA");
             Console.WriteLine();
 
+            systemManager.DisplaySystemDetails();
+            Console.WriteLine();
+
             systemManager.BookSeat("DD", "123", SeatClass.first, "101", "A");
             systemManager.BookSeat("DELTA", "2222", SeatClass.bussiness, "1", "A");
             Console.WriteLine();
