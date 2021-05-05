@@ -13,20 +13,27 @@
             yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, 1, 1, SeatClass.bussiness};
         }
 
-        public static IEnumerable<object[]> InvalidSectionData()
+        public static IEnumerable<object[]> InvalidSectionModelData()
         {
-            yield return new object[] { "invalid", ConstantTestData.FlightId, 1, 1, SeatClass.bussiness };
-
-            yield return new object[] { ConstantTestData.AirlineName, "invalid", 3, 4, SeatClass.economy };
+            
 
             yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, ModelConstants.MaxSectionRows +1, ModelConstants.MaxSectionColumns - 1, SeatClass.economy };
 
             yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId,ModelConstants.MaxSectionRows - 1 , ModelConstants.MaxSectionColumns + 1, SeatClass.first };
 
-            //this should already exist
-            yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, 3, 10, SeatClass.first };
             
         }
+
+        public static IEnumerable<object[]> InvalidSectionArgumentData()
+        {
+            //this should already exist
+            yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, 3, 10, SeatClass.first };
+
+            yield return new object[] { "invalid", ConstantTestData.FlightId, 1, 1, SeatClass.economy };
+
+            yield return new object[] { ConstantTestData.AirlineName, "invalid", 3, 4, SeatClass.economy };
+        }
+
 
         public static IEnumerable<object[]> ValidSeatData()
         {
@@ -47,7 +54,7 @@
             yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, 2, 2, SeatClass.first };
         }
 
-        public static IEnumerable<object[]> AddictionalSeatsInvalidData()
+        public static IEnumerable<object[]> AddictionalSeatsInvalidArgumentData()
         {
             yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, 1, 1, SeatClass.economy };
 
@@ -55,10 +62,17 @@
 
             yield return new object[] { ConstantTestData.AirlineName, "Invalid", 1, 1, SeatClass.first };
 
+
+
+        }
+
+        public static IEnumerable<object[]> AddictionalSeatsInvalidModelData()
+        {
+
             yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, ModelConstants.MaxSectionRows, 1, SeatClass.first };
 
-            yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, 1, ModelConstants.MaxSectionColumns, SeatClass.first };
 
+            yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, 1, ModelConstants.MaxSectionColumns, SeatClass.first };
         }
     }
 }

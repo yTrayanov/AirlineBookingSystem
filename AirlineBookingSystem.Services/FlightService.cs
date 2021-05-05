@@ -47,13 +47,14 @@
 
         public Flight GetFlightByIdAndAirline(string flightId, string airlineName)
         {
-            var flights = this.Context.Flights;
-            if (!flights.ContainsKey(flightId) && flights[flightId].Airline.Name == airlineName)
+            var flight = this.Context.Flights.Values.FirstOrDefault(f => f.Id == flightId && f.Airline.Name == airlineName);
+
+            if (flight == null)
             {
                 throw new ArgumentException($"Flight with number {flightId} and airline {airlineName} doesn't exist");
             }
 
-            return flights[flightId];
+            return flight;
         }
 
 

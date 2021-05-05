@@ -33,10 +33,18 @@
 
 
         [Theory]
-        [MemberData(nameof(SectionData.InvalidSectionData), MemberType = typeof(SectionData))]
-        public void CreateSectionWithInvalidData(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
+        [MemberData(nameof(SectionData.InvalidSectionModelData), MemberType = typeof(SectionData))]
+        public void CreateSectionWithInvalidModelData(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
             Assert.Throws<ValidationException>(
+                () => this._sectionService.CreateSection(airlineName, flightId, rows, cols, seatClass));
+        }
+
+        [Theory]
+        [MemberData(nameof(SectionData.InvalidSectionArgumentData), MemberType = typeof(SectionData))]
+        public void CreateSectionWithInvalidArgumentData(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
+        {
+            Assert.Throws<ArgumentException>(
                 () => this._sectionService.CreateSection(airlineName, flightId, rows, cols, seatClass));
         }
 
@@ -78,18 +86,25 @@
         }
 
         [Theory]
-        [MemberData(nameof(SectionData.AddictionalSeatsInvalidData), MemberType = typeof(SectionData))]
-        public void AddSeatsToSectionWithInvalidData(string airlineName, string flightId, int extraRows, int extraCols, SeatClass seatClass)
+        [MemberData(nameof(SectionData.AddictionalSeatsInvalidArgumentData), MemberType = typeof(SectionData))]
+        public void AddSeatsToSectionWithInvalidArgumentData(string airlineName, string flightId, int extraRows, int extraCols, SeatClass seatClass)
         {
             Assert.Throws<ArgumentException>(
+                () => this._sectionService.AddSeatsToSection(airlineName, flightId, extraRows, extraCols, seatClass));
+        }
+
+        [Theory]
+        [MemberData(nameof(SectionData.AddictionalSeatsInvalidModelData), MemberType = typeof(SectionData))]
+        public void AddSeatsToSectionWithInvalidModeltData(string airlineName, string flightId, int extraRows, int extraCols, SeatClass seatClass)
+        {
+            Assert.Throws<ValidationException>(
                 () => this._sectionService.AddSeatsToSection(airlineName, flightId, extraRows, extraCols, seatClass));
         }
 
         [Fact]
         public void FlightHasNoAvailableSeatsAfterFullyBooked()
         {
-            Flight flight = this.Context.Flights.Values
-                .FirstOrDefault(f => f.Id == ConstantTestData.FullFlight);
+            Flight flight = this.Context.Flights[ConstantTestData.FullFlight];
 
             FlightSection  section = flight.Sections.FirstOrDefault(s => s.SeatClass == SeatClass.first);
 

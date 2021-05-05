@@ -70,11 +70,6 @@
         {
             var flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
-            if(flight == null)
-            {
-                throw new ArgumentException("Flight not found!");
-            }
-
             var oldSection = flight.Sections.FirstOrDefault(s => s.SeatClass == seatClass);
 
             if(oldSection == null)
@@ -93,6 +88,7 @@
 
 
             var newSection = new FlightSection(newRows, newCols, oldSection.SeatClass);
+            this.ValidateModel(newSection);
 
             flight.Sections.Remove(oldSection);
 
