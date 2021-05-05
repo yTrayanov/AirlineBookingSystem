@@ -1,5 +1,6 @@
 ﻿namespace AirlineBookingSystem.Tests.TestData
 {
+    using AirlineBookingSystem.Common;
     using System.Collections.Generic;
     public static class AirlineData
     {
@@ -12,7 +13,7 @@
             yield return new string[] { "AHAHA" };
         }
 
-        public static IEnumerable<object[]> InvalidAirlineData()
+        public static IEnumerable<object[]> InvalidAirlineNames()
         {
             yield return new string[] { "Invalid Name" };
             yield return new string[] { "" };
@@ -20,7 +21,6 @@
             yield return new string[] { "   " };
             yield return new string[] { "123" };
             yield return new string[] { "AAA AA" };
-
         }
     }
 }

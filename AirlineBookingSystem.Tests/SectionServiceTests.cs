@@ -6,6 +6,7 @@
     using AirlineBookingSystem.Tests.Fixtures;
     using AirlineBookingSystem.Tests.TestData;
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using Xunit;
 
@@ -25,7 +26,7 @@
         {
             FlightSection section = this._sectionService.CreateSection(airlineName, flightId, rows, cols, seatClass);
 
-            var flight = this.Context.Flights.FirstOrDefault(f => f.Id == flightId);
+            var flight = this.Context.Flights[flightId];
 
             Assert.Contains(section, flight.Sections);
         }
@@ -35,7 +36,7 @@
         [MemberData(nameof(SectionData.InvalidSectionData), MemberType = typeof(SectionData))]
         public void CreateSectionWithInvalidData(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
-            Assert.Throws<ArgumentException>(
+            Assert.Throws<ValidationException>(
                 () => this._sectionService.CreateSection(airlineName, flightId, rows, cols, seatClass));
         }
 
@@ -62,8 +63,8 @@
         [MemberData(nameof(SectionData.AddictionalSeatsValidData), MemberType = typeof(SectionData))]
         public void AddSeatsToSectionWithValidData(string airlineName, string flightId, int extraRows, int extraCols, SeatClass seatClass)
         {
-            FlightSection oldSection = this.Context
-                .Flights.FirstOrDefault(f => f.Id == flightId && f.Airline.Name == airlineName)
+            FlightSection oldSection = this.Context.Flights.Values
+                .FirstOrDefault(f => f.Id == flightId && f.Airline.Name == airlineName)
                 .Sections.FirstOrDefault(s => s.SeatClass == seatClass);
 
             FlightSection newSection = this._sectionService.AddSeatsToSection(airlineName, flightId, extraRows, extraCols, seatClass);
@@ -87,7 +88,8 @@
         [Fact]
         public void FlightHasNoAvailableSeatsAfterFullyBooked()
         {
-            Flight flight = this.Context.Flights.FirstOrDefault(f => f.Id == ConstantTestData.FullFlight);
+            Flight flight = this.Context.Flights.Values
+                .FirstOrDefault(f => f.Id == ConstantTestData.FullFlight);
 
             FlightSection  section = flight.Sections.FirstOrDefault(s => s.SeatClass == SeatClass.first);
 

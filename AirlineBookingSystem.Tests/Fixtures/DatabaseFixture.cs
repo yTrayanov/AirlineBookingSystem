@@ -39,14 +39,14 @@
 
             section.Seats[ConstantTestData.FlightSectionRows - 1, ConstantTestData.FlightSectionColumns - 1].IsBooked = true;
 
-            this.Context.Airports.Add(originAirport);
+            this.Context.Airports.Add(originAirport.Name,originAirport);
 
-            this.Context.Airports.Add(destinationAirport);
+            this.Context.Airports.Add(destinationAirport.Name ,destinationAirport);
 
-            this.Context.Airlines.Add(airline);
+            this.Context.Airlines.Add(airline.Name,airline);
 
-            this.Context.Flights.Add(flight);
-            this.Context.Flights.Add(fullFlight);
+            this.Context.Flights.Add(flight.Id,flight);
+            this.Context.Flights.Add(fullFlight.Id, fullFlight);
 
         }
 

@@ -24,7 +24,8 @@
         {
             Airport airport = this._airportService.CreateAirport(name);
 
-            Assert.Contains(airport, this.Context.Airports);
+            Assert.True(this.Context.Airports.ContainsKey(name));
+            Assert.Equal(this.Context.Airports[name], airport);
 
         }
 
@@ -39,11 +40,11 @@
         [Theory]
         [InlineData(ConstantTestData.OriginAirport)]
         [InlineData(ConstantTestData.DestionationAirport)]
-        public void GetAiportByNameWithValidAirports(string airportName)
+        public void GetAiportByNameWithValidAirports(string name)
         {
-            Airport airport = this._airportService.GetAirportByName(airportName);
+            Airport airport = this._airportService.GetAirportByName(name);
 
-            Assert.Equal(airportName, airport.Name);
+            Assert.Equal(name, airport.Name);
         }
     }
 }

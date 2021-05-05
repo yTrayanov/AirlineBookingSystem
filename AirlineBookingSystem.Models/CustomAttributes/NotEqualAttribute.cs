@@ -31,7 +31,7 @@ namespace AirlineBookingSystem.Models.CustomAttributes
 
                 if (value.Equals(otherPropertyValue))
                 {
-                    return new ValidationResult(FormatErrorMessage(validationContext.DisplayName));
+                    throw new ValidationException(FormatErrorMessage(validationContext.DisplayName));
                 }
             }
 

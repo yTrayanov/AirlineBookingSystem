@@ -19,12 +19,12 @@
         {
             Flight flight = _flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
-            FlightSection section = new FlightSection(rows, cols, seatClass);
-            Validator.ValidateObject(section, new ValidationContext(section), true);
+            FlightSection newSection = new FlightSection(rows, cols, seatClass);
+            this.ValidateModel(newSection);
 
-            AddNewSection(seatClass, flight, section);
+            AddNewSection(seatClass, flight, newSection);
 
-            return section;
+            return newSection;
 
         }
 
@@ -109,7 +109,6 @@
 
 
             return newSection;
-
         }
 
         private static void AddNewSection(SeatClass seatClass, Flight flight, FlightSection section)

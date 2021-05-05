@@ -16,36 +16,33 @@ namespace AirlineBookingSystem.Services
 
         public Airport CreateAirport(string name)
         {
+            var newAirport = new Airport(name);
+            this.ValidateModel(newAirport);
 
-            if (this.Context.Airports.Any(a => a.Name == name))
+            if (this.Context.Airports.ContainsKey(name))
             {
-                throw new ArgumentException("Airport already exists!");
+                throw new ArgumentException($"Airport {name} already exists");
             }
 
-            var newAirport = new Airport(name);
-            Validator.ValidateObject(newAirport, new ValidationContext(newAirport), true);
-
-            this.Context.Airports.Add(newAirport);
+            this.Context.Airports.Add(name,newAirport);
 
             return newAirport;
         }
 
         public Airport GetAirportByName(string name)
         {
-            var airport = this.Context.Airports
-                .FirstOrDefault(airline => airline.Name == name);
 
-            if (airport == null)
+            if (!this.Context.Airports.ContainsKey(name))
             {
                 throw new ArgumentException($"Airport {name} doesn't exist!");
             }
 
-            return airport;
+            return this.Context.Airports[name];
         }
 
         public List<Airport> GetAllAirports()
         {
-            return this.Context.Airports;
+            return this.Context.Airports.Values.ToList();
         }
     }
 }

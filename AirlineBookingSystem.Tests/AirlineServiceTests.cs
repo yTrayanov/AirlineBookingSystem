@@ -1,5 +1,6 @@
 namespace AirlineBookingSystem.Tests
 {
+    using AirlineBookingSystem.Common;
     using AirlineBookingSystem.Models;
     using AirlineBookingSystem.Services;
     using AirlineBookingSystem.Tests.Fixtures;
@@ -23,30 +24,40 @@ namespace AirlineBookingSystem.Tests
 
             Airline airline = this._airlineService.CreateAirline(airlineName);
 
-            Assert.Contains(airline, this.Context.Airlines);
+            Assert.True(this.Context.Airlines.ContainsKey(airlineName));
+            Assert.Equal(this.Context.Airlines[airlineName], airline);
 
-            this.Context.Airlines.Remove(airline);
+            this.Context.Airlines.Remove(airlineName);
         }
 
         [Theory]
-        [MemberData(nameof(AirlineData.InvalidAirlineData), MemberType = typeof(AirlineData))]
-        public void CreatingAirlineWithInvalidData(string airlineName)
+        [MemberData(nameof(AirlineData.InvalidAirlineNames), MemberType = typeof(AirlineData))]
+        public void CreatingAirlineWithInvalidNameData(string airlineName)
         {
             Assert.Throws<ValidationException>(
                 () => this._airlineService.CreateAirline(airlineName));
         }
 
+        [Fact]
+        public void AddingExistingAirline()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                this._airlineService.CreateAirline(ConstantTestData.AirlineName);
+            });
+        }
+
         [Theory]
         [MemberData(nameof(AirlineData.ValidAirlineData) , MemberType = typeof(AirlineData))]
-        public void GetAirlineByName_ReturnsCorrectAirline(string name)
+        public void GetAirlineByName_ReturnsCorrectAirline(string airlineName)
         {
             
 
-            Airline airline = this._airlineService.CreateAirline(name);
+            Airline airline = this._airlineService.CreateAirline(airlineName);
 
-            Assert.Same(airline, this._airlineService.GetAirlineByName(name));
+            Assert.Same(airline, this._airlineService.GetAirlineByName(airlineName));
 
-            this.Context.Airlines.Remove(airline);
+            this.Context.Airlines.Remove(airlineName);
         }
 
     }

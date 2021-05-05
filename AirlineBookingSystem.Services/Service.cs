@@ -1,6 +1,7 @@
 ﻿namespace AirlineBookingSystem.Services
 {
     using AirlineBookingSystem.Data;
+    using System.ComponentModel.DataAnnotations;
 
     public class Service
     {
@@ -9,6 +10,12 @@
             this.Context = context;
         }
 
-        public BaseContext Context { get; set; }
+        protected BaseContext Context { get; set; }
+
+        protected void ValidateModel(object obj)
+        {
+            var context = new ValidationContext(obj);
+            Validator.ValidateObject(obj, context, true);
+        }
     }
 }

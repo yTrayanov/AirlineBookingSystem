@@ -21,22 +21,36 @@
 
         [Theory]
         [MemberData(nameof(FlightData.ValidFlightData), MemberType =typeof(FlightData))]
-        public void CreateFlightWithValidData(string airlineName , string originAiportName , string destinationAiportName , string year , string month , string day , string flightId)
+        public void CreateFlightWithValidData(string airlineName , string originAiportName , string destinationAiportName , int year , int month , int day , string flightId)
         {
             Flight flight = this._flightService.CreateFlight(airlineName, originAiportName, destinationAiportName, year, month, day, flightId);
 
-            Airline airline = this.Context.Airlines.FirstOrDefault(a => a.Name == airlineName);
+            Airline airline = this.Context.Airlines[airlineName];
 
-            Assert.Contains(flight, this.Context.Flights);
+            Assert.True(this.Context.Flights.ContainsKey(flightId));
             Assert.Contains(flight, airline.Flights);
         }
 
         [Theory]
         [MemberData(nameof(FlightData.InvalidFlightData) , MemberType =typeof(FlightData))]
-        public void CreateFlightWithInvalidData(string airlineName, string originAiportName, string destinationAiportName, string year, string month, string day, string flightId)
+        public void CreateFlightWithInvalidData(string airlineName, string originAiportName, string destinationAiportName, int year, int month, int day, string flightId)
         {
-            Assert.Throws<ArgumentException>(
+            Assert.Throws<ValidationException>(
                 () => this._flightService.CreateFlight(airlineName, originAiportName, destinationAiportName, year, month, day, flightId));
+        }
+
+        [Fact]
+        public void CreatingFligthWithNonExistingAirline()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            this._flightService.CreateFlight("Invalid", ConstantTestData.OriginAirport, ConstantTestData.DestionationAirport, 2050, 9, 6, "123"));
+        }
+
+        [Fact]
+        public void AddExistingFlight()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            this._flightService.CreateFlight(ConstantTestData.AirlineName, ConstantTestData.OriginAirport, ConstantTestData.DestionationAirport, 3000, 12, 1, ConstantTestData.FlightId));
         }
 
 

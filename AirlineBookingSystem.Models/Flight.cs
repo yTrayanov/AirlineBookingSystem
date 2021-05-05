@@ -7,6 +7,7 @@
     using System.Linq;
     public class Flight
     {
+
         private DateTime _departureDate;
 
         public Flight(Airline airline, Airport originAirport
@@ -33,6 +34,8 @@
 
         public List<FlightSection> Sections { get; set; }
 
+
+        [NotPastDate]
         public string DepartureDate
         {
             get

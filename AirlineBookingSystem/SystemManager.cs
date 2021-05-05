@@ -45,7 +45,7 @@
         }
 
         public void CreateFlight(string airlineName , string originAirportName ,
-            string destinationAirportName, string year , string month , string day , string flightId)
+            string destinationAirportName, int year , int month , int day , string flightId)
         {
             try
             {
@@ -59,19 +59,11 @@
             }
         }
 
-        public void CreateSection(string airlineName ,string flightId , string rows , string cols ,SeatClass seatClass)
+        public void CreateSection(string airlineName ,string flightId , int rows , int cols ,SeatClass seatClass)
         {
             try
             {
-                int parsedRows;
-                int parsedColumns;
-
-                if(!int.TryParse(rows , out parsedRows) || !int.TryParse(cols , out parsedColumns))
-                {
-                    throw new ArgumentException("Invalid rows or columns");
-                }
-
-                this.sectionService.CreateSection(airlineName, flightId, parsedRows, parsedColumns, seatClass);
+                this.sectionService.CreateSection(airlineName, flightId, rows, cols, seatClass);
 
                 Console.WriteLine($"Successfully created {seatClass} section for flight {flightId}");
             }
@@ -98,19 +90,11 @@
             }
         }
 
-        public void BookSeat(string airlineName ,string flightId ,SeatClass seatClass ,string row , string col)
+        public void BookSeat(string airlineName ,string flightId ,SeatClass seatClass ,int row , char colSymbol)
         {
             try
             {
-                int parsedRow;
-                char parsedCol;
-
-                if(!int.TryParse(row, out parsedRow) || !char.TryParse(col ,out parsedCol))
-                {
-                    throw new ArgumentException("Invalid row or col");
-                }
-
-                this.sectionService.BookSeat(airlineName, flightId , seatClass, parsedRow, parsedCol);
+                this.sectionService.BookSeat(airlineName, flightId , seatClass, row, colSymbol);
                 Console.WriteLine("Seat booked successfully");
             }
             catch (Exception e)
@@ -144,21 +128,13 @@
 
         }
 
-        public void AddNewSeats(string airlineName , string flightId , string rows , string cols , SeatClass seatClass)
+        public void AddNewSeats(string airlineName , string flightId , int extraRows , int extraCols , SeatClass seatClass)
         {
             try
             {
-                int parsedRows;
-                int parsedCols;
+                this.sectionService.AddSeatsToSection(airlineName, flightId, extraRows, extraCols, seatClass);
 
-                if(!int.TryParse(rows, out parsedRows) || !int.TryParse(cols , out parsedCols))
-                {
-                    throw new ArgumentException("Extra rows and extra cols should be a number");
-                }
-
-                this.sectionService.AddSeatsToSection(airlineName, flightId, parsedRows, parsedCols, seatClass);
-
-                Console.WriteLine($"Successfully added {rows} rows and {cols} coloumns to flight {flightId}");
+                Console.WriteLine($"Successfully added {extraRows} rows and {extraCols} coloumns to flight {flightId}");
             }
             catch (Exception e)
             {

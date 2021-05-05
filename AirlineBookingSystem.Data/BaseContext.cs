@@ -10,16 +10,16 @@ namespace AirlineBookingSystem.Data
 
         protected BaseContext()
         {
-            this.Airlines = new List<Airline>();
-            this.Airports = new List<Airport>();
-            this.Flights = new List<Flight>();
+            this.Airlines = new Dictionary<string, Airline>();
+            this.Airports = new Dictionary<string, Airport>();
+            this.Flights = new Dictionary<string,Flight>();
         }
 
-        public List<Airport> Airports { get; set; }
+        public Dictionary<string,Airport> Airports { get; set; }
 
-        public List<Airline> Airlines { get; set; }
+        public Dictionary<string,Airline> Airlines { get; set; }
 
-        public List<Flight> Flights { get; set; }
+        public Dictionary<string ,Flight> Flights { get; set; }
 
     }
 }
