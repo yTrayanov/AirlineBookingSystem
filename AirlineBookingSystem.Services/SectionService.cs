@@ -3,6 +3,7 @@
     using AirlineBookingSystem.Data;
     using AirlineBookingSystem.Models;
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
     public class SectionService : Service
@@ -14,12 +15,14 @@
             this._flightService = new FlightService(context);
         }
 
-        public FlightSection CreateAndAddNewSectionToFlight(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
+        public FlightSection CreateSection(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
             Flight flight = _flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
             FlightSection section = new FlightSection(rows, cols, seatClass);
-            CheckIfFlightContainsSectionAndAddNewSection(seatClass, flight, section);
+            Validator.ValidateObject(section, new ValidationContext(section), true);
+
+            AddNewSection(seatClass, flight, section);
 
             return section;
 
@@ -93,7 +96,7 @@
 
             flight.Sections.Remove(oldSection);
 
-            CheckIfFlightContainsSectionAndAddNewSection(newSection.SeatClass, flight, newSection);
+            AddNewSection(newSection.SeatClass, flight, newSection);
 
 
             for (int row = 0; row < oldSection.Seats.GetLength(0); row++)
@@ -109,7 +112,7 @@
 
         }
 
-        private static void CheckIfFlightContainsSectionAndAddNewSection(SeatClass seatClass, Flight flight, FlightSection section)
+        private static void AddNewSection(SeatClass seatClass, Flight flight, FlightSection section)
         {
             if (flight.Sections.Any(s => s.SeatClass == seatClass))
             {

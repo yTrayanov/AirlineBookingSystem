@@ -5,6 +5,7 @@ namespace AirlineBookingSystem.Tests
     using AirlineBookingSystem.Tests.Fixtures;
     using AirlineBookingSystem.Tests.TestData;
     using System;
+    using System.ComponentModel.DataAnnotations;
     using Xunit;
     public class AirlineServiceTests : BaseTest
     {
@@ -31,7 +32,7 @@ namespace AirlineBookingSystem.Tests
         [MemberData(nameof(AirlineData.InvalidAirlineData), MemberType = typeof(AirlineData))]
         public void CreatingAirlineWithInvalidData(string airlineName)
         {
-            Assert.Throws<ArgumentException>(
+            Assert.Throws<ValidationException>(
                 () => this._airlineService.CreateAirline(airlineName));
         }
 

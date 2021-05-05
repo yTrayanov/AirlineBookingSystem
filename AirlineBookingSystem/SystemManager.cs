@@ -71,7 +71,7 @@
                     throw new ArgumentException("Invalid rows or columns");
                 }
 
-                this.sectionService.CreateAndAddNewSectionToFlight(airlineName, flightId, parsedRows, parsedColumns, seatClass);
+                this.sectionService.CreateSection(airlineName, flightId, parsedRows, parsedColumns, seatClass);
 
                 Console.WriteLine($"Successfully created {seatClass} section for flight {flightId}");
             }
@@ -136,7 +136,7 @@
                 Console.WriteLine("-" + airline.Name);
                 foreach (var flight in airline.Flights)
                 {
-                    string hasAvailableSeats = flight.hasAvalableSeats ? "Yes" : "No";
+                    string hasAvailableSeats = flight.IsAvailable ? "Yes" : "No";
 
                     Console.WriteLine($"---FlightNumber: {flight.Id} OriginAirport: {flight.OriginAirport.Name} DestinationAirport: {flight.DestinationAirport.Name} Departure Date: {flight.DepartureDate} HasAvailableSeats:{hasAvailableSeats}");
                 }

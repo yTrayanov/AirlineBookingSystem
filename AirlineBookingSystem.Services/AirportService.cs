@@ -2,6 +2,7 @@
 using AirlineBookingSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -15,10 +16,6 @@ namespace AirlineBookingSystem.Services
 
         public Airport CreateAirport(string name)
         {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentException("Airport name is required!");
-            }
 
             if (this.Context.Airports.Any(a => a.Name == name))
             {
@@ -26,6 +23,7 @@ namespace AirlineBookingSystem.Services
             }
 
             var newAirport = new Airport(name);
+            Validator.ValidateObject(newAirport, new ValidationContext(newAirport), true);
 
             this.Context.Airports.Add(newAirport);
 

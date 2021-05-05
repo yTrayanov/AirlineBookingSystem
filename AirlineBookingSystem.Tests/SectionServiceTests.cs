@@ -23,7 +23,7 @@
         [MemberData(nameof(SectionData.ValidSectionData) , MemberType =typeof(SectionData))]
         public void CreateSectionWithValidData(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
-            FlightSection section = this._sectionService.CreateAndAddNewSectionToFlight(airlineName, flightId, rows, cols, seatClass);
+            FlightSection section = this._sectionService.CreateSection(airlineName, flightId, rows, cols, seatClass);
 
             var flight = this.Context.Flights.FirstOrDefault(f => f.Id == flightId);
 
@@ -36,7 +36,7 @@
         public void CreateSectionWithInvalidData(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
             Assert.Throws<ArgumentException>(
-                () => this._sectionService.CreateAndAddNewSectionToFlight(airlineName, flightId, rows, cols, seatClass));
+                () => this._sectionService.CreateSection(airlineName, flightId, rows, cols, seatClass));
         }
 
         [Theory]
@@ -91,7 +91,7 @@
 
             FlightSection  section = flight.Sections.FirstOrDefault(s => s.SeatClass == SeatClass.first);
 
-            Assert.True(flight.hasAvalableSeats);
+            Assert.True(flight.IsAvailable);
 
             for (int row = 0; row < section.Seats.GetLength(0); row++)
             {
@@ -101,7 +101,7 @@
                 }
             }
 
-            Assert.False(flight.hasAvalableSeats);
+            Assert.False(flight.IsAvailable);
         }
     }
 }

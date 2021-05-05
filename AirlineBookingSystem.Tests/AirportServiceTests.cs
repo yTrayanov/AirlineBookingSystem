@@ -6,6 +6,7 @@
     using AirlineBookingSystem.Tests.Fixtures;
     using AirlineBookingSystem.Tests.TestData;
     using System;
+    using System.ComponentModel.DataAnnotations;
     using Xunit;
 
     public class AirportServiceTests : BaseTest
@@ -31,7 +32,7 @@
         [MemberData(nameof(AirportData.InvalidAirportData) , MemberType =typeof(AirportData))]
         public void CreateAirportWithInvalidData(string name)
         {
-            Assert.Throws<ArgumentException>(
+            Assert.Throws<ValidationException>(
                 () => this._airportService.CreateAirport(name));
         }
 

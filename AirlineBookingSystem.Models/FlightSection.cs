@@ -2,12 +2,10 @@
 {
     using AirlineBookingSystem.Common;
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     public class FlightSection
     {
-        private int _rows;
-        private int _columns;
-
         public FlightSection(int rows, int columns, SeatClass seatClass)
         {
             this.Rows = rows;
@@ -19,38 +17,33 @@
 
         public Seat[,] Seats { get; set; }
 
-        public int Rows
-        {
-            get
-            {
-                return this._rows;
-            }
-            set
-            {
-                if (value > ModelConstants.MaxSectionRows || value < ModelConstants.MinSectionRows)
-                {
-                    throw new ArgumentException($"There can't be more than {ModelConstants.MaxSectionRows} and less than {ModelConstants.MinSectionRows}");
-                }
-                this._rows = value;
-            }
-        }
-        public int Columns
-        {
-            get
-            {
-                return this._columns;
-            }
-            set
-            {
-                if (value > ModelConstants.MaxSectionColumns || value < ModelConstants.MinSectionColumns)
-                {
-                    throw new ArgumentException($"There can't be more than {ModelConstants.MaxSectionColumns} and less than {ModelConstants.MinSectionColumns} columns");
-                }
-                this._columns = value;
-            }
-        }
+        [Range(ModelConstants.MinSectionRows, ModelConstants.MaxSectionRows,
+            ErrorMessage = "Invalid rows number")]
+        public int Rows { get; set; }
+
+        [Range(ModelConstants.MinSectionColumns, ModelConstants.MaxSectionColumns,
+            ErrorMessage = "Invalid columns number")]
+        public int Columns { get; set; }
 
         public SeatClass SeatClass { get; set; }
+
+        public bool hasAvailableSeats
+        {
+            get
+            {
+                for (int row = 0; row < this.Seats.GetLength(0); row++)
+                {
+                    for (int col = 0; col < this.Seats.GetLength(1); col++)
+                    {
+                        if (!this.Seats[row, col].IsBooked)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+        }
 
         private void GenerateSeats()
         {

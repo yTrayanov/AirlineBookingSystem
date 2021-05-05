@@ -6,6 +6,7 @@
     using AirlineBookingSystem.Tests.Fixtures;
     using AirlineBookingSystem.Tests.TestData;
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using Xunit;
 

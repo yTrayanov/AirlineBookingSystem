@@ -36,7 +36,8 @@
 
         public static IEnumerable<object[]> InvalidSeatData()
         {
-            yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, SeatClass.first, ConstantTestData.FlightSectionRows + 1, 'J' };
+            yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, SeatClass.first, ConstantTestData.FlightSectionRows + 20, 'J' };
+
             yield return new object[] { ConstantTestData.AirlineName, ConstantTestData.FlightId, SeatClass.first, 1, Convert.ToChar(ConstantTestData.FlightSectionColumns + 1)};
         }
 

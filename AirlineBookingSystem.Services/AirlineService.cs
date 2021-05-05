@@ -4,6 +4,7 @@
     using AirlineBookingSystem.Models;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     public class AirlineService: Service
     {
@@ -13,17 +14,13 @@
 
         public Airline CreateAirline(string name)
         {
-            if (string.IsNullOrEmpty(name))
-            {
-                throw new ArgumentException("Airline name is required!");
-            }
-
             if(this.Context.Airlines.Any(a => a.Name == name))
             {
                 throw new ArgumentException("Airline already exists!");
             }
 
             Airline newAirline = new Airline(name);
+            Validator.ValidateObject(newAirline, new ValidationContext(newAirline), true);
 
             this.Context.Airlines.Add(newAirline);
 

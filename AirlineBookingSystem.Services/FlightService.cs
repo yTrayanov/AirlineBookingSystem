@@ -4,6 +4,7 @@
     using AirlineBookingSystem.Models;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
     public class FlightService : Service
@@ -34,7 +35,7 @@
             }
 
             var flight = new Flight(airline, originAirport, destinationAirport, flightDate, flightId);
-
+            Validator.ValidateObject(flight, new ValidationContext(flight), true);
 
             airline.Flights.Add(flight);
             this.Context.Flights.Add(flight);
@@ -61,7 +62,7 @@
         public List<Flight> GetAvailableFlights(string originAirportName, string destinationAirportName)
         {
             return this.Context.Flights
-                        .Where(f => f.hasAvalableSeats &&
+                        .Where(f => f.IsAvailable &&
                         f.DestinationAirport.Name == destinationAirportName &&
                         f.OriginAirport.Name == originAirportName)
                         .ToList();
