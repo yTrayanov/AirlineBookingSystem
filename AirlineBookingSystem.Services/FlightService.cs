@@ -38,7 +38,7 @@
             }
 
             airline.Flights.Add(newFlight);
-            this.Context.Flights.Add(flightId,newFlight);
+            this.Context.Flights.Add(flightId, newFlight);
 
             return newFlight;
 
@@ -69,7 +69,12 @@
 
         public FlightSection GetFlightSection(SeatClass seatClass, Flight flight)
         {
-            return flight.Sections.FirstOrDefault(section => section.SeatClass == seatClass);
+            if (!flight.Sections.ContainsKey(seatClass))
+            {
+                throw new ArgumentException($"This flight does't have {seatClass} section");
+            }
+            return flight.Sections[seatClass];
+
         }
 
     }

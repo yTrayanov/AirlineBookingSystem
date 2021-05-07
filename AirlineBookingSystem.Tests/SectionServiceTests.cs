@@ -28,7 +28,7 @@
 
             var flight = this.Context.Flights[flightId];
 
-            Assert.Contains(section, flight.Sections);
+            Assert.Contains(section, flight.Sections.Values);
         }
 
 
@@ -73,7 +73,7 @@
         {
             FlightSection oldSection = this.Context.Flights.Values
                 .FirstOrDefault(f => f.Id == flightId && f.Airline.Name == airlineName)
-                .Sections.FirstOrDefault(s => s.SeatClass == seatClass);
+                .Sections.Values.FirstOrDefault(s => s.SeatClass == seatClass);
 
             FlightSection newSection = this._sectionService.AddSeatsToSection(airlineName, flightId, extraRows, extraCols, seatClass);
 
@@ -106,7 +106,7 @@
         {
             Flight flight = this.Context.Flights[TestConstants.FullFlight];
 
-            FlightSection  section = flight.Sections.FirstOrDefault(s => s.SeatClass == SeatClass.first);
+            FlightSection  section = flight.Sections.Values.FirstOrDefault(s => s.SeatClass == SeatClass.first);
 
             Assert.True(flight.IsAvailable);
 

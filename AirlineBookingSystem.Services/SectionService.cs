@@ -34,11 +34,6 @@
 
             FlightSection section = this._flightService.GetFlightSection(seatClass, flight);
 
-            if (section == null)
-            {
-                throw new ArgumentException($"This flight does't have {seatClass} section");
-            }
-
             try
             {
                 int col = (int)(colSymbol - 'A');
@@ -69,14 +64,15 @@
         {
             var flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
-            var oldSection = flight.Sections.FirstOrDefault(s => s.SeatClass == seatClass);
 
-            if(oldSection == null)
+            if(!flight.Sections.ContainsKey(seatClass))
             {
                 throw new ArgumentException($"Flight doesn't have {seatClass} section");
             }
 
-            if(extraRows == 0 && extraCols == 0)
+            var oldSection = flight.Sections[seatClass];
+
+            if (extraRows == 0 && extraCols == 0)
             {
                 throw new ArgumentException("Addictional rows and cols should be greater than 0");
             }
@@ -88,7 +84,7 @@
             var newSection = new FlightSection(newRows, newCols, oldSection.SeatClass);
             this.ValidateModel(newSection);
 
-            flight.Sections.Remove(oldSection);
+            flight.Sections.Remove(seatClass);
 
             AddNewSection(newSection.SeatClass, flight, newSection);
 
@@ -107,12 +103,12 @@
 
         private static void AddNewSection(SeatClass seatClass, Flight flight, FlightSection section)
         {
-            if (flight.Sections.Any(s => s.SeatClass == seatClass))
+            if (flight.Sections.ContainsKey(seatClass))
             {
                 throw new ArgumentException("Section already exists");
             }
 
-            flight.Sections.Add(section);
+            flight.Sections.Add(seatClass,section);
         }
 
     }

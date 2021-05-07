@@ -53,6 +53,10 @@
                     year, month, day, flightId);
                 Console.WriteLine("Flight successfully created");
             }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid date");
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);

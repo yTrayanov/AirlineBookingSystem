@@ -18,7 +18,7 @@
             this.OriginAirport = originAirport;
             this.DestinationAirport = destinationAirport;
             this._departureDate = departureDate;
-            this.Sections = new List<FlightSection>();
+            this.Sections = new Dictionary<SeatClass, FlightSection>();
 
         }
 
@@ -32,7 +32,7 @@
         [NotEqual(nameof(OriginAirport))]
         public Airport DestinationAirport { get; set; }
 
-        public List<FlightSection> Sections { get; set; }
+        public Dictionary<SeatClass ,FlightSection> Sections { get; set; }
 
 
         [NotPastDate]
@@ -40,7 +40,7 @@
         {
             get
             {
-                return _departureDate.ToString("MM/dd/yyyy");
+                return _departureDate.ToString("dd/MM/yyyy");
             }
         }
 
@@ -50,10 +50,9 @@
             {
                 if (this.Sections.Any())
                 {
-                    for (int i = 0; i < this.Sections.Count; i++)
+                    foreach (var section in this.Sections.Values)
                     {
-                        var currentSectionSeats = this.Sections[i];
-                        if (currentSectionSeats.hasAvailableSeats)
+                        if (section.hasAvailableSeats)
                         {
                             return true;
                         }
