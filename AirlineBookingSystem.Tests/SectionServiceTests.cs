@@ -82,7 +82,7 @@
  
 
             //This seat is booked in the base class and should stay booked even after adding new seats;
-            Assert.True(newSection.Seats[ConstantTestData.FlightSectionRows - 1, ConstantTestData.FlightSectionColumns - 1].IsBooked);
+            Assert.True(newSection.Seats[TestConstants.FlightSectionRows - 1, TestConstants.FlightSectionColumns - 1].IsBooked);
         }
 
         [Theory]
@@ -104,7 +104,7 @@
         [Fact]
         public void FlightHasNoAvailableSeatsAfterFullyBooked()
         {
-            Flight flight = this.Context.Flights[ConstantTestData.FullFlight];
+            Flight flight = this.Context.Flights[TestConstants.FullFlight];
 
             FlightSection  section = flight.Sections.FirstOrDefault(s => s.SeatClass == SeatClass.first);
 

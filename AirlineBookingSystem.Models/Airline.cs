@@ -1,10 +1,8 @@
 ﻿namespace AirlineBookingSystem.Models
 {
     using AirlineBookingSystem.Common;
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text.RegularExpressions;
 
     public class Airline
     {
@@ -13,6 +11,8 @@
             this.Name = name;
             this.Flights = new List<Flight>();
         }
+
+        public int Id { get; set; }
 
         [Required(ErrorMessage ="Airline name is required")]
         [MaxLength(ModelConstants.AirlineNameMaxLegth , ErrorMessage ="Airline must be less then 6 alphabetic symbols")]

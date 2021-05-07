@@ -38,8 +38,8 @@
         }
 
         [Theory]
-        [InlineData(ConstantTestData.OriginAirport)]
-        [InlineData(ConstantTestData.DestionationAirport)]
+        [InlineData(TestConstants.OriginAirport)]
+        [InlineData(TestConstants.DestionationAirport)]
         public void GetAiportByNameWithValidAirports(string name)
         {
             Airport airport = this._airportService.GetAirportByName(name);

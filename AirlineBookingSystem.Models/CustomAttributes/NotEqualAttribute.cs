@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace AirlineBookingSystem.Models.CustomAttributes
+﻿namespace AirlineBookingSystem.Models.CustomAttributes
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class NotEqualAttribute : ValidationAttribute
     {
         private const string DefaultErrorMessage = "The value of {0} cannot be the same as the value of the {1}.";
@@ -15,11 +12,7 @@ namespace AirlineBookingSystem.Models.CustomAttributes
 
         public string OtherProperty { get; private set; }
 
-        public override string FormatErrorMessage(string name)
-        {
-            return string.Format(this.ErrorMessageString, name, this.OtherProperty);
-        }
-
+        
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             if(value != null)
@@ -37,5 +30,11 @@ namespace AirlineBookingSystem.Models.CustomAttributes
 
             return ValidationResult.Success;
         }
+
+        public override string FormatErrorMessage(string name)
+        {
+            return string.Format(this.ErrorMessageString, name, this.OtherProperty);
+        }
+
     }
 }

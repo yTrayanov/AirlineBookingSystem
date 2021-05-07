@@ -7,11 +7,14 @@
             this.Row = seatRow;
             this.Col = seatColumnCharacter;
         }
+
+        public int Id { get; set; }
+
         public int Row { get; set; }
         public char Col { get; set; }
         public bool IsBooked { get; set; } = false;
 
-        public string Id {
+        public string SeatNumber {
             get
             {
                 return this.Row.ToString() + this.Col.ToString();

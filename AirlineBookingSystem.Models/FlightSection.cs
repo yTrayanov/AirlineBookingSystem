@@ -15,6 +15,8 @@
         }
 
 
+        public int Id { get; set; }
+
         public Seat[,] Seats { get; set; }
 
         [Range(ModelConstants.MinSectionRows, ModelConstants.MaxSectionRows,

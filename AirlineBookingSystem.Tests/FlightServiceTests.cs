@@ -43,19 +43,19 @@
         public void CreatingFligthWithNonExistingAirline()
         {
             Assert.Throws<ArgumentException>(() =>
-            this._flightService.CreateFlight("Invalid", ConstantTestData.OriginAirport, ConstantTestData.DestionationAirport, 2050, 9, 6, "123"));
+            this._flightService.CreateFlight("Invalid", TestConstants.OriginAirport, TestConstants.DestionationAirport, 2050, 9, 6, "123"));
         }
 
         [Fact]
         public void AddExistingFlight()
         {
             Assert.Throws<ArgumentException>(() =>
-            this._flightService.CreateFlight(ConstantTestData.AirlineName, ConstantTestData.OriginAirport, ConstantTestData.DestionationAirport, 3000, 12, 1, ConstantTestData.FlightId));
+            this._flightService.CreateFlight(TestConstants.AirlineName, TestConstants.OriginAirport, TestConstants.DestionationAirport, 3000, 12, 1, TestConstants.FlightId));
         }
 
 
         [Theory]
-        [InlineData(ConstantTestData.FlightId , ConstantTestData.AirlineName)]
+        [InlineData(TestConstants.FlightId , TestConstants.AirlineName)]
         public void GetFlightByIdAndAirline_WIthValidData(string flightId , string airlineName)
         {
             Flight flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);

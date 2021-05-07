@@ -4,7 +4,6 @@
     using AirlineBookingSystem.Models;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     public class AirlineService: Service
     {
@@ -14,9 +13,6 @@
 
         public Airline CreateAirline(string name)
         {
-
-            
-
             Airline newAirline = new Airline(name);
             this.ValidateModel(newAirline);
 

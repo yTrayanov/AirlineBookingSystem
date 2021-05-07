@@ -3,7 +3,6 @@
     using AirlineBookingSystem.Data;
     using AirlineBookingSystem.Models;
     using System;
-    using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
     public class SectionService : Service
@@ -47,7 +46,7 @@
 
                 if (seat.IsBooked)
                 {
-                    throw new ArgumentException($"Seat {seat.Id} is already booked");
+                    throw new ArgumentException($"Seat {seat.SeatNumber} is already booked");
                 }
                 else
                 {
@@ -84,7 +83,6 @@
 
             var newRows = oldSection.Seats.GetLength(0) + extraRows;
             var newCols = oldSection.Seats.GetLength(1) + extraCols;
-
 
 
             var newSection = new FlightSection(newRows, newCols, oldSection.SeatClass);

@@ -2,7 +2,7 @@
 
 namespace AirlineBookingSystem.Common
 {
-    public static class ConstantTestData
+    public static class TestConstants
     {
         public const string OriginAirport = "ORG";
         public const string DestionationAirport = "DES";

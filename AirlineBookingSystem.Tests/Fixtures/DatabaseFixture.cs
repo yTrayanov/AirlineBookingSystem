@@ -19,25 +19,25 @@
 
         private void InsertPermanentData()
         {
-            Airport originAirport = new Airport(ConstantTestData.OriginAirport);
+            Airport originAirport = new Airport(TestConstants.OriginAirport);
 
-            Airport destinationAirport = new Airport(ConstantTestData.DestionationAirport);
+            Airport destinationAirport = new Airport(TestConstants.DestionationAirport);
 
-            Airline airline = new Airline(ConstantTestData.AirlineName);
+            Airline airline = new Airline(TestConstants.AirlineName);
 
-            Flight flight = new Flight(airline, originAirport, destinationAirport, new DateTime(3000, 12, 1), ConstantTestData.FlightId);
+            Flight flight = new Flight(airline, originAirport, destinationAirport, new DateTime(3000, 12, 1), TestConstants.FlightId);
 
-            Flight fullFlight = new Flight(airline, originAirport, destinationAirport, new DateTime(3000, 12, 1), ConstantTestData.FullFlight);
+            Flight fullFlight = new Flight(airline, originAirport, destinationAirport, new DateTime(3000, 12, 1), TestConstants.FullFlight);
 
-            fullFlight.Sections.Add(new FlightSection(ConstantTestData.FlightSectionRows, ConstantTestData.FlightSectionColumns, SeatClass.first));
+            fullFlight.Sections.Add(new FlightSection(TestConstants.FlightSectionRows, TestConstants.FlightSectionColumns, SeatClass.first));
 
-            FlightSection section = new FlightSection(ConstantTestData.FlightSectionRows, ConstantTestData.FlightSectionColumns, SeatClass.first);
+            FlightSection section = new FlightSection(TestConstants.FlightSectionRows, TestConstants.FlightSectionColumns, SeatClass.first);
 
 
             flight.Sections.Add(section);
             airline.Flights.Add(flight);
 
-            section.Seats[ConstantTestData.FlightSectionRows - 1, ConstantTestData.FlightSectionColumns - 1].IsBooked = true;
+            section.Seats[TestConstants.FlightSectionRows - 1, TestConstants.FlightSectionColumns - 1].IsBooked = true;
 
             this.Context.Airports.Add(originAirport.Name,originAirport);
 

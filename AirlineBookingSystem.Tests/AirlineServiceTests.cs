@@ -43,7 +43,7 @@ namespace AirlineBookingSystem.Tests
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                this._airlineService.CreateAirline(ConstantTestData.AirlineName);
+                this._airlineService.CreateAirline(TestConstants.AirlineName);
             });
         }
 

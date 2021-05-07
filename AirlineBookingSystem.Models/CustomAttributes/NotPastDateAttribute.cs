@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace AirlineBookingSystem.Models.CustomAttributes
+﻿namespace AirlineBookingSystem.Models.CustomAttributes
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
     public class NotPastDateAttribute : ValidationAttribute
     {
         public override bool IsValid(object value)
