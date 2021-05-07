@@ -1,6 +1,6 @@
 ﻿namespace AirlineBookingSystem.Models
 {
-    using AirlineBookingSystem.Common;
+    using AirlineBookingSystem.Models.Constants;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -12,6 +12,7 @@
             this.Flights = new List<Flight>();
         }
 
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage ="Airline name is required")]

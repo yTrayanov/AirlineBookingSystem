@@ -1,8 +1,8 @@
 ﻿namespace AirlineBookingSystem.Tests.Fixtures
 {
-    using AirlineBookingSystem.Common;
     using AirlineBookingSystem.Data;
     using AirlineBookingSystem.Models;
+    using AirlineBookingSystem.Tests.Constants;
     using System;
 
     public class DatabaseFixture :IDisposable

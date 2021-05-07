@@ -22,6 +22,7 @@
 
         }
 
+        [Key]
         [Required(ErrorMessage = "Flight id is required")]
         public string Id { get; set; }
 

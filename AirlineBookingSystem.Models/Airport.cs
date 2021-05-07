@@ -1,6 +1,6 @@
 ﻿namespace AirlineBookingSystem.Models
 {
-    using AirlineBookingSystem.Common;
+    using AirlineBookingSystem.Models.Constants;
     using System.ComponentModel.DataAnnotations;
 
     public class Airport
@@ -9,6 +9,8 @@
         {
             this.Name = airportName;
         }
+
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Airport name is required")]

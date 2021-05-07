@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AirlineBookingSystem.Common\AirlineBookingSystem.Common.csproj" />
     <ProjectReference Include="..\AirlineBookingSystem.Models\AirlineBookingSystem.Models.csproj" />
   </ItemGroup>
 

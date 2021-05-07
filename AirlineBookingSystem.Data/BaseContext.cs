@@ -1,13 +1,10 @@
-﻿using AirlineBookingSystem.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AirlineBookingSystem.Data
+﻿namespace AirlineBookingSystem.Data
 {
+    using AirlineBookingSystem.Models;
+    using System.Collections.Generic;
+
     public abstract class BaseContext
     {
-
         protected BaseContext()
         {
             this.Airlines = new Dictionary<string, Airline>();

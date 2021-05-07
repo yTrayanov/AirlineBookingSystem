@@ -1,10 +1,4 @@
-﻿using AirlineBookingSystem.Common;
-using AirlineBookingSystem.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AirlineBookingSystem.Data
+﻿namespace AirlineBookingSystem.Data
 {
     public class AirlineBookingTestContext : BaseContext
     {
@@ -18,6 +12,5 @@ namespace AirlineBookingSystem.Data
         {
             return _context;
         }
-
     }
 }

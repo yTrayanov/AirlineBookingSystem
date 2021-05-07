@@ -16,7 +16,7 @@
 
         public FlightSection CreateSection(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
-            Flight flight = _flightService.GetFlightByIdAndAirline(flightId, airlineName);
+            Flight flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
             FlightSection newSection = new FlightSection(rows, cols, seatClass);
             this.ValidateModel(newSection);
@@ -24,11 +24,10 @@
             AddNewSection(seatClass, flight, newSection);
 
             return newSection;
-
         }
 
 
-        public Seat BookSeat(string airlineName , string flightId , SeatClass seatClass ,int row , char colSymbol)
+        public Seat BookSeat(string airlineName, string flightId, SeatClass seatClass, int row, char colSymbol)
         {
             Flight flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
@@ -37,16 +36,14 @@
             try
             {
                 int col = (int)(colSymbol - 'A');
-                Seat seat = section.Seats[row-1, col];
+                Seat seat = section.Seats[row - 1, col];
 
                 if (seat.IsBooked)
                 {
                     throw new ArgumentException($"Seat {seat.SeatNumber} is already booked");
                 }
-                else
-                {
-                    seat.IsBooked = true;
-                }
+
+                seat.IsBooked = true;
 
                 return seat;
             }
@@ -60,12 +57,11 @@
             }
         }
 
-        public FlightSection AddSeatsToSection(string airlineName , string flightId , int extraRows , int extraCols , SeatClass seatClass)
+        public FlightSection AddSeatsToSection(string airlineName, string flightId, int extraRows, int extraCols, SeatClass seatClass)
         {
             var flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
-
-            if(!flight.Sections.ContainsKey(seatClass))
+            if (!flight.Sections.ContainsKey(seatClass))
             {
                 throw new ArgumentException($"Flight doesn't have {seatClass} section");
             }
@@ -97,7 +93,6 @@
                 }
             }
 
-
             return newSection;
         }
 
@@ -108,8 +103,7 @@
                 throw new ArgumentException("Section already exists");
             }
 
-            flight.Sections.Add(seatClass,section);
+            flight.Sections.Add(seatClass, section);
         }
-
     }
 }

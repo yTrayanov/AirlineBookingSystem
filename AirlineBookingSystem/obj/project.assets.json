@@ -2,21 +2,10 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "AirlineBookingSystem.Common/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/AirlineBookingSystem.Common.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/AirlineBookingSystem.Common.dll": {}
-        }
-      },
       "AirlineBookingSystem.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "AirlineBookingSystem.Common": "1.0.0",
           "AirlineBookingSystem.Models": "1.0.0"
         },
         "compile": {
@@ -29,9 +18,6 @@
       "AirlineBookingSystem.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "AirlineBookingSystem.Common": "1.0.0"
-        },
         "compile": {
           "bin/placeholder/AirlineBookingSystem.Models.dll": {}
         },
@@ -56,11 +42,6 @@
     }
   },
   "libraries": {
-    "AirlineBookingSystem.Common/1.0.0": {
-      "type": "project",
-      "path": "../AirlineBookingSystem.Common/AirlineBookingSystem.Common.csproj",
-      "msbuildProject": "../AirlineBookingSystem.Common/AirlineBookingSystem.Common.csproj"
-    },
     "AirlineBookingSystem.Data/1.0.0": {
       "type": "project",
       "path": "../AirlineBookingSystem.Data/AirlineBookingSystem.Data.csproj",

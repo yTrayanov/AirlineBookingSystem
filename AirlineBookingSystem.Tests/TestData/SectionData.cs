@@ -1,7 +1,8 @@
 ﻿namespace AirlineBookingSystem.Tests.TestData
 {
-    using AirlineBookingSystem.Common;
     using AirlineBookingSystem.Models;
+    using AirlineBookingSystem.Models.Constants;
+    using AirlineBookingSystem.Tests.Constants;
     using System;
     using System.Collections.Generic;
 

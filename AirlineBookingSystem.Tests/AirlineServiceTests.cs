@@ -1,8 +1,8 @@
 namespace AirlineBookingSystem.Tests
 {
-    using AirlineBookingSystem.Common;
     using AirlineBookingSystem.Models;
     using AirlineBookingSystem.Services;
+    using AirlineBookingSystem.Tests.Constants;
     using AirlineBookingSystem.Tests.Fixtures;
     using AirlineBookingSystem.Tests.TestData;
     using System;

@@ -28,7 +28,6 @@
 
             DateTime flightDate = new DateTime(year, month, day);
 
-
             var newFlight = new Flight(airline, originAirport, destinationAirport, flightDate, flightId);
             this.ValidateModel(newFlight);
 
@@ -41,21 +40,17 @@
             this.Context.Flights.Add(flightId, newFlight);
 
             return newFlight;
-
         }
 
         public Flight GetFlightByIdAndAirline(string flightId, string airlineName)
         {
-            var flight = this.Context.Flights.Values.FirstOrDefault(f => f.Id == flightId && f.Airline.Name == airlineName);
-
-            if (flight == null)
+            if (this.Context.Flights.ContainsKey(flightId) && this.Context.Flights[flightId].Airline.Name == airlineName)
             {
-                throw new ArgumentException($"Flight with number {flightId} and airline {airlineName} doesn't exist");
+                return this.Context.Flights[flightId];
             }
 
-            return flight;
+            throw new ArgumentException($"Flight with number {flightId} and airline {airlineName} doesn't exist");
         }
-
 
         public List<Flight> GetAvailableFlights(string originAirportName, string destinationAirportName)
         {
@@ -66,15 +61,14 @@
                     .ToList();
         }
 
-
         public FlightSection GetFlightSection(SeatClass seatClass, Flight flight)
         {
             if (!flight.Sections.ContainsKey(seatClass))
             {
                 throw new ArgumentException($"This flight does't have {seatClass} section");
             }
-            return flight.Sections[seatClass];
 
+            return flight.Sections[seatClass];
         }
 
     }

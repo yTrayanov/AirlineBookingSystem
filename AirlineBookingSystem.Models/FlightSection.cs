@@ -1,6 +1,6 @@
 ﻿namespace AirlineBookingSystem.Models
 {
-    using AirlineBookingSystem.Common;
+    using AirlineBookingSystem.Models.Constants;
     using System;
     using System.ComponentModel.DataAnnotations;
 
@@ -15,6 +15,7 @@
         }
 
 
+        [Key]
         public int Id { get; set; }
 
         public Seat[,] Seats { get; set; }

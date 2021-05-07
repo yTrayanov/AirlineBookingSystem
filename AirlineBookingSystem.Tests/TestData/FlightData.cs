@@ -1,6 +1,6 @@
 ﻿namespace AirlineBookingSystem.Tests.TestData
 {
-    using AirlineBookingSystem.Common;
+    using AirlineBookingSystem.Tests.Constants;
     using System.Collections.Generic;
 
     public static class FlightData
