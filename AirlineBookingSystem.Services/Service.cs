@@ -3,7 +3,6 @@
     using AirlineBookingSystem.Data;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     public abstract class Service
     {
@@ -14,15 +13,9 @@
 
         protected BaseContext Context { get; set; }
 
-        protected void ValidateModel(object obj)
+        protected void ShouldContainKey(ICollection<string> keys, string key, bool shouldContain, string errorMessage)
         {
-            var context = new ValidationContext(obj);
-            Validator.ValidateObject(obj, context, true);
-        }
-
-        protected void HasKey(ICollection<string> keys ,string name, bool shouldContain , string errorMessage)
-        {
-            if (keys.Contains(name) != shouldContain)
+            if (keys.Contains(key) != shouldContain)
             {
                 throw new ArgumentException(errorMessage);
             }

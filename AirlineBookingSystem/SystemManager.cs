@@ -57,6 +57,10 @@
             {
                 Console.WriteLine("Invalid date");
             }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("Invalid date");
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);

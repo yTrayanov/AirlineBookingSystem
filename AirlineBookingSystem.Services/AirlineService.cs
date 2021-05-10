@@ -2,7 +2,6 @@
 {
     using AirlineBookingSystem.Data;
     using AirlineBookingSystem.Models;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     public class AirlineService: Service
@@ -14,9 +13,8 @@
         public Airline CreateAirline(string name)
         {
             Airline newAirline = new Airline(name);
-            this.ValidateModel(newAirline);
 
-            this.HasKey(this.Context.Airlines.Keys, name, false, $"Airline {name} already exists");
+            this.ShouldContainKey(this.Context.Airlines.Keys, name, false, $"Airline {name} already exists");
 
             this.Context.Airlines.Add(name , newAirline);
 
@@ -25,7 +23,7 @@
 
         public Airline GetAirlineByName(string name)
         {
-            this.HasKey(this.Context.Airlines.Keys, name, true, $"Airline {name} doesn't exist!");
+            this.ShouldContainKey(this.Context.Airlines.Keys, name, true, $"Airline {name} doesn't exist!");
 
             return this.Context.Airlines[name];
         }

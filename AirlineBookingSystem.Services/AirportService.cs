@@ -15,9 +15,8 @@ namespace AirlineBookingSystem.Services
         public Airport CreateAirport(string name)
         {
             var newAirport = new Airport(name);
-            this.ValidateModel(newAirport);
 
-            this.HasKey(this.Context.Airports.Keys, name, false, $"Airport {name} already exists");
+            this.ShouldContainKey(this.Context.Airports.Keys, name, false, $"Airport {name} already exists");
 
             this.Context.Airports.Add(name,newAirport);
 
@@ -26,7 +25,7 @@ namespace AirlineBookingSystem.Services
 
         public Airport GetAirportByName(string name)
         {
-            this.HasKey(this.Context.Airports.Keys, name, true, $"Airport {name} doesn't exist!");
+            this.ShouldContainKey(this.Context.Airports.Keys, name, true, $"Airport {name} doesn't exist!");
 
             return this.Context.Airports[name];
         }

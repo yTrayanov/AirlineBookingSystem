@@ -3,11 +3,12 @@
     using AirlineBookingSystem.Models.Constants;
     using System.ComponentModel.DataAnnotations;
 
-    public class Airport
+    public class Airport : BaseModel
     {
         public Airport(string airportName)
         {
             this.Name = airportName;
+            this.Validate();
         }
 
         [Key]

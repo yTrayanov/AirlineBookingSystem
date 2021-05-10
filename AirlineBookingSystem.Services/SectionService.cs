@@ -19,7 +19,6 @@
             Flight flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
             FlightSection newSection = new FlightSection(rows, cols, seatClass);
-            this.ValidateModel(newSection);
 
             AddNewSection(seatClass, flight, newSection);
 
@@ -61,7 +60,7 @@
         {
             var flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
-            this.HasKey(flight.Sections.Keys, seatClass.ToString(), true, $"Flight doesn't have {seatClass} section");
+            this.ShouldContainKey(flight.Sections.Keys, seatClass.ToString(), true, $"Flight doesn't have {seatClass} section");
 
             var oldSection = flight.Sections[seatClass.ToString()];
 
@@ -75,7 +74,6 @@
 
 
             var newSection = new FlightSection(newRows, newCols, oldSection.SeatClass);
-            this.ValidateModel(newSection);
 
             flight.Sections.Remove(seatClass.ToString());
 
@@ -95,7 +93,7 @@
 
         private void AddNewSection(SeatClass seatClass, Flight flight, FlightSection section)
         {
-            this.HasKey(flight.Sections.Keys, seatClass.ToString(), false, "Section already exists");
+            this.ShouldContainKey(flight.Sections.Keys, seatClass.ToString(), false, "Section already exists");
 
             flight.Sections.Add(seatClass.ToString(), section);
         }

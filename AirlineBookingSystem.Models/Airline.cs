@@ -4,12 +4,13 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Airline
+    public class Airline : BaseModel
     {
         public Airline(string name)
         {
             this.Name = name;
             this.Flights = new List<Flight>();
+            this.Validate();
         }
 
         [Key]
@@ -21,5 +22,6 @@
         public string Name{ get; set; }
 
         public List<Flight> Flights { get; set; }
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace AirlineBookingSystem.Models
 {
     using System.ComponentModel.DataAnnotations;
-    public class Seat
+    public class Seat : BaseModel
     {
         public Seat(int seatRow, char seatColumnCharacter)
         {

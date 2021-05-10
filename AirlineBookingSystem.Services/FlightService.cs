@@ -29,9 +29,8 @@
             DateTime flightDate = new DateTime(year, month, day);
 
             var newFlight = new Flight(airline, originAirport, destinationAirport, flightDate, flightId);
-            this.ValidateModel(newFlight);
 
-            this.HasKey(this.Context.Flights.Keys, flightId, false, "Flight number already exists!");
+            this.ShouldContainKey(this.Context.Flights.Keys, flightId, false, "Flight number already exists!");
 
             airline.Flights.Add(newFlight);
             this.Context.Flights.Add(flightId, newFlight);
@@ -60,7 +59,7 @@
 
         public FlightSection GetFlightSection(SeatClass seatClass, Flight flight)
         {
-            this.HasKey(flight.Sections.Keys, seatClass.ToString(), true, $"This flight does't have {seatClass} section");
+            this.ShouldContainKey(flight.Sections.Keys, seatClass.ToString(), true, $"This flight does't have {seatClass} section");
 
             return flight.Sections[seatClass.ToString()];
         }

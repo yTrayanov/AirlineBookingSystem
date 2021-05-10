@@ -4,13 +4,14 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class FlightSection
+    public class FlightSection : BaseModel
     {
         public FlightSection(int rows, int columns, SeatClass seatClass)
         {
             this.Rows = rows;
             this.Columns = columns;
             this.SeatClass = seatClass;
+            this.Validate();
             GenerateSeats();
         }
 

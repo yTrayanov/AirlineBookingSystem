@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
-    public class Flight
+    public class Flight:BaseModel
     {
         private DateTime _departureDate;
 
@@ -18,7 +18,7 @@
             this.DestinationAirport = destinationAirport;
             this._departureDate = departureDate;
             this.Sections = new Dictionary<string, FlightSection>();
-
+            this.Validate();
         }
 
         [Key]
