@@ -61,12 +61,9 @@
         {
             var flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
 
-            if (!flight.Sections.ContainsKey(seatClass))
-            {
-                throw new ArgumentException($"Flight doesn't have {seatClass} section");
-            }
+            this.HasKey(flight.Sections.Keys, seatClass.ToString(), true, $"Flight doesn't have {seatClass} section");
 
-            var oldSection = flight.Sections[seatClass];
+            var oldSection = flight.Sections[seatClass.ToString()];
 
             if (extraRows == 0 && extraCols == 0)
             {
@@ -80,7 +77,7 @@
             var newSection = new FlightSection(newRows, newCols, oldSection.SeatClass);
             this.ValidateModel(newSection);
 
-            flight.Sections.Remove(seatClass);
+            flight.Sections.Remove(seatClass.ToString());
 
             AddNewSection(newSection.SeatClass, flight, newSection);
 
@@ -96,14 +93,11 @@
             return newSection;
         }
 
-        private static void AddNewSection(SeatClass seatClass, Flight flight, FlightSection section)
+        private void AddNewSection(SeatClass seatClass, Flight flight, FlightSection section)
         {
-            if (flight.Sections.ContainsKey(seatClass))
-            {
-                throw new ArgumentException("Section already exists");
-            }
+            this.HasKey(flight.Sections.Keys, seatClass.ToString(), false, "Section already exists");
 
-            flight.Sections.Add(seatClass, section);
+            flight.Sections.Add(seatClass.ToString(), section);
         }
     }
 }

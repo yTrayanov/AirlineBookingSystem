@@ -16,10 +16,7 @@
             Airline newAirline = new Airline(name);
             this.ValidateModel(newAirline);
 
-            if (this.Context.Airlines.ContainsKey(name))
-            {
-                throw new ArgumentException($"Airline {name} already exists");
-            }
+            this.HasKey(this.Context.Airlines.Keys, name, false, $"Airline {name} already exists");
 
             this.Context.Airlines.Add(name , newAirline);
 
@@ -28,10 +25,7 @@
 
         public Airline GetAirlineByName(string name)
         {
-            if (!this.Context.Airlines.ContainsKey(name))
-            {
-                throw new ArgumentException($"Airline {name} doesn't exist!");
-            }
+            this.HasKey(this.Context.Airlines.Keys, name, true, $"Airline {name} doesn't exist!");
 
             return this.Context.Airlines[name];
         }

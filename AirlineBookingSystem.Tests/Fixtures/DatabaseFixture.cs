@@ -29,12 +29,12 @@
 
             Flight fullFlight = new Flight(airline, originAirport, destinationAirport, new DateTime(3000, 12, 1), TestConstants.FullFlight);
 
-            fullFlight.Sections.Add(SeatClass.first ,new FlightSection(TestConstants.FlightSectionRows, TestConstants.FlightSectionColumns, SeatClass.first));
+            fullFlight.Sections.Add(SeatClass.first.ToString() ,new FlightSection(TestConstants.FlightSectionRows, TestConstants.FlightSectionColumns, SeatClass.first));
 
             FlightSection section = new FlightSection(TestConstants.FlightSectionRows, TestConstants.FlightSectionColumns, SeatClass.first);
 
 
-            flight.Sections.Add(SeatClass.first,section);
+            flight.Sections.Add(SeatClass.first.ToString(),section);
             airline.Flights.Add(flight);
 
             section.Seats[TestConstants.FlightSectionRows - 1, TestConstants.FlightSectionColumns - 1].IsBooked = true;

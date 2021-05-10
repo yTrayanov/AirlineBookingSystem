@@ -7,7 +7,6 @@
     using System.Linq;
     public class Flight
     {
-
         private DateTime _departureDate;
 
         public Flight(Airline airline, Airport originAirport
@@ -18,7 +17,7 @@
             this.OriginAirport = originAirport;
             this.DestinationAirport = destinationAirport;
             this._departureDate = departureDate;
-            this.Sections = new Dictionary<SeatClass, FlightSection>();
+            this.Sections = new Dictionary<string, FlightSection>();
 
         }
 
@@ -33,7 +32,7 @@
         [NotEqual(nameof(OriginAirport))]
         public Airport DestinationAirport { get; set; }
 
-        public Dictionary<SeatClass ,FlightSection> Sections { get; set; }
+        public Dictionary<string ,FlightSection> Sections { get; set; }
 
 
         [NotPastDate]
