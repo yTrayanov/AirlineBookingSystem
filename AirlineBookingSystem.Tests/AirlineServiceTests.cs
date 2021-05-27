@@ -47,18 +47,5 @@ namespace AirlineBookingSystem.Tests
             });
         }
 
-        [Theory]
-        [MemberData(nameof(AirlineData.ValidAirlineData) , MemberType = typeof(AirlineData))]
-        public void GetAirlineByName_ReturnsCorrectAirline(string airlineName)
-        {
-            
-
-            Airline airline = this._airlineService.CreateAirline(airlineName);
-
-            Assert.Same(airline, this._airlineService.GetAirlineByName(airlineName));
-
-            this.Context.Airlines.Remove(airlineName);
-        }
-
     }
 }

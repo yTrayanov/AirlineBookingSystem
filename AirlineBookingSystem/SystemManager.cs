@@ -13,7 +13,7 @@
 
         private AirlineService airlineService = new AirlineService(_context);
         private AirportService airportService = new AirportService(_context);
-        private FlightService flightService = new FlightService(_context);
+        private FlightService flightService = new FlightService(_context );
         private SectionService sectionService = new SectionService(_context);
 
 

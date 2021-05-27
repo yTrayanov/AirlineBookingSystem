@@ -8,7 +8,7 @@
         {
         }
 
-        public static AirlineBookingContext GetContext()
+        public static BaseContext GetContext()
         {
             return _context;
         }

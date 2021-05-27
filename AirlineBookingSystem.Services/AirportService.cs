@@ -20,14 +20,8 @@ namespace AirlineBookingSystem.Services
 
             this.Context.Airports.Add(name,newAirport);
 
+
             return newAirport;
-        }
-
-        public Airport GetAirportByName(string name)
-        {
-            this.ShouldContainKey(this.Context.Airports.Keys, name, true, $"Airport {name} doesn't exist!");
-
-            return this.Context.Airports[name];
         }
 
         public List<Airport> GetAllAirports()

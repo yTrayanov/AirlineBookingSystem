@@ -25,10 +25,7 @@
         {
             Flight flight = this._flightService.CreateFlight(airlineName, originAiportName, destinationAiportName, year, month, day, flightId);
 
-            Airline airline = this.Context.Airlines[airlineName];
-
             Assert.True(this.Context.Flights.ContainsKey(flightId));
-            Assert.Contains(flight, airline.Flights);
         }
 
         [Theory]
@@ -54,13 +51,5 @@
         }
 
 
-        [Theory]
-        [InlineData(TestConstants.FlightId , TestConstants.AirlineName)]
-        public void GetFlightByIdAndAirline_WIthValidData(string flightId , string airlineName)
-        {
-            Flight flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
-
-            Assert.Equal(flightId, flight.Id);
-        }
     }
 }

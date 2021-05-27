@@ -1,6 +1,7 @@
 ﻿namespace AirlineBookingSystem.Services
 {
     using AirlineBookingSystem.Data;
+    using AirlineBookingSystem.Models;
     using System;
     using System.Collections.Generic;
 
@@ -20,5 +21,6 @@
                 throw new ArgumentException(errorMessage);
             }
         }
+
     }
 }

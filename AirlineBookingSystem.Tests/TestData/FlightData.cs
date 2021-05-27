@@ -23,7 +23,6 @@
 
             yield return new object[] { TestConstants.AirlineName, TestConstants.OriginAirport, TestConstants.OriginAirport, FutureYear, 9, 6, "12390" };
 
-            yield return new object[] { TestConstants.AirlineName, TestConstants.OriginAirport, TestConstants.OriginAirport, FutureYear, 9, 6, TestConstants.FlightId };
         }
     }
 }

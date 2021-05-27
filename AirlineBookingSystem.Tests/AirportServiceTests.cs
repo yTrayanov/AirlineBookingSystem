@@ -37,14 +37,5 @@
                 () => this._airportService.CreateAirport(name));
         }
 
-        [Theory]
-        [InlineData(TestConstants.OriginAirport)]
-        [InlineData(TestConstants.DestionationAirport)]
-        public void GetAiportByNameWithValidAirports(string name)
-        {
-            Airport airport = this._airportService.GetAirportByName(name);
-
-            Assert.Equal(name, airport.Name);
-        }
     }
 }

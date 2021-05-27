@@ -21,13 +21,6 @@
             return newAirline;
         }
 
-        public Airline GetAirlineByName(string name)
-        {
-            this.ShouldContainKey(this.Context.Airlines.Keys, name, true, $"Airline {name} doesn't exist!");
-
-            return this.Context.Airlines[name];
-        }
-
         public List<Airline> GetAllAirlines()
         {
             return this.Context.Airlines.Values.ToList();
