@@ -17,7 +17,6 @@
         private SectionService sectionService = new SectionService(_context);
 
 
-
         public void CreateAirport(string name)
         {
             try
@@ -52,10 +51,6 @@
                 flightService.CreateFlight(airlineName, originAirportName, destinationAirportName,
                     year, month, day, flightId);
                 Console.WriteLine("Flight successfully created");
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Invalid date");
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -134,20 +129,6 @@
                 }
             }
 
-        }
-
-        public void AddNewSeats(string airlineName , string flightId , int extraRows , int extraCols , SeatClass seatClass)
-        {
-            try
-            {
-                this.sectionService.AddSeatsToSection(airlineName, flightId, extraRows, extraCols, seatClass);
-
-                Console.WriteLine($"Successfully added {extraRows} rows and {extraCols} coloumns to flight {flightId}");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
         }
     }
 }

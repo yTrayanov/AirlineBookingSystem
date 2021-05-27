@@ -1,6 +1,6 @@
 ﻿namespace AirlineBookingSystem.Data
 {
-    public class AirlineBookingContext:BaseContext
+    public class AirlineBookingContext : BaseContext
     {
         private static AirlineBookingContext _context = new AirlineBookingContext();
 

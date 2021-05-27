@@ -3,7 +3,7 @@
     using Xunit;
 
     [CollectionDefinition("TestCollection")]
-    public class CollectionFixture:ICollectionFixture<DatabaseFixture>
+    public class CollectionFixture : ICollectionFixture<DatabaseFixture>
     {
     }
 }

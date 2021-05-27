@@ -19,6 +19,5 @@ namespace AirlineBookingSystem.Models.Constants
         public const string NamePattern = "^[A-Z]+$";
 
 
-
     }
 }

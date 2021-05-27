@@ -21,7 +21,7 @@
         }
 
         [Theory]
-        [MemberData(nameof(SectionData.ValidSectionData) , MemberType =typeof(SectionData))]
+        [MemberData(nameof(SectionData.ValidSectionData), MemberType = typeof(SectionData))]
         public void CreateSectionWithValidData(string airlineName, string flightId, int rows, int cols, SeatClass seatClass)
         {
             FlightSection section = this._sectionService.CreateSection(airlineName, flightId, rows, cols, seatClass);
@@ -52,7 +52,7 @@
         [MemberData(nameof(SectionData.ValidSeatData), MemberType = typeof(SectionData))]
         public void BookValidSeat(string airlineName, string flightId, SeatClass seatClass, int row, char colSymbol)
         {
-            Seat seat = this._sectionService.BookSeat(airlineName, flightId , seatClass , row , colSymbol);
+            Seat seat = this._sectionService.BookSeat(airlineName, flightId, seatClass, row, colSymbol);
 
             Assert.True(seat.IsBooked);
 
@@ -67,46 +67,12 @@
                 () => this._sectionService.BookSeat(airlineName, flightId, seatClass, row, colSymbol));
         }
 
-        [Theory]
-        [MemberData(nameof(SectionData.AddictionalSeatsValidData), MemberType = typeof(SectionData))]
-        public void AddSeatsToSectionWithValidData(string airlineName, string flightId, int extraRows, int extraCols, SeatClass seatClass)
-        {
-            FlightSection oldSection = this.Context.Flights.Values
-                .FirstOrDefault(f => f.Id == flightId && f.Airline.Name == airlineName)
-                .Sections.Values.FirstOrDefault(s => s.SeatClass == seatClass);
-
-            FlightSection newSection = this._sectionService.AddSeatsToSection(airlineName, flightId, extraRows, extraCols, seatClass);
-
-            Assert.Equal(oldSection.Rows + extraRows, newSection.Rows);
-            Assert.Equal(oldSection.Columns + extraCols, newSection.Columns);
- 
-
-            //This seat is booked in the base class and should stay booked even after adding new seats;
-            Assert.True(newSection.Seats[TestConstants.FlightSectionRows - 1, TestConstants.FlightSectionColumns - 1].IsBooked);
-        }
-
-        [Theory]
-        [MemberData(nameof(SectionData.AddictionalSeatsInvalidArgumentData), MemberType = typeof(SectionData))]
-        public void AddSeatsToSectionWithInvalidArgumentData(string airlineName, string flightId, int extraRows, int extraCols, SeatClass seatClass)
-        {
-            Assert.Throws<ArgumentException>(
-                () => this._sectionService.AddSeatsToSection(airlineName, flightId, extraRows, extraCols, seatClass));
-        }
-
-        [Theory]
-        [MemberData(nameof(SectionData.AddictionalSeatsInvalidModelData), MemberType = typeof(SectionData))]
-        public void AddSeatsToSectionWithInvalidModeltData(string airlineName, string flightId, int extraRows, int extraCols, SeatClass seatClass)
-        {
-            Assert.Throws<ValidationException>(
-                () => this._sectionService.AddSeatsToSection(airlineName, flightId, extraRows, extraCols, seatClass));
-        }
-
         [Fact]
         public void FlightHasNoAvailableSeatsAfterFullyBooked()
         {
             Flight flight = this.Context.Flights[TestConstants.FullFlight];
 
-            FlightSection  section = flight.Sections.Values.FirstOrDefault(s => s.SeatClass == SeatClass.first);
+            FlightSection section = flight.Sections.Values.FirstOrDefault(s => s.SeatClass == SeatClass.first);
 
             Assert.True(flight.IsAvailable);
 
@@ -114,7 +80,8 @@
             {
                 for (int col = 0; col < section.Seats.GetLength(1); col++)
                 {
-                    section.Seats[row, col].IsBooked = true;
+                    if (!section.Seats[row, col].IsBooked)
+                        section.BookSeat(row, col);
                 }
             }
 

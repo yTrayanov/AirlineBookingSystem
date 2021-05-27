@@ -25,9 +25,9 @@
 
             Airline airline = new Airline(TestConstants.AirlineName);
 
-            Flight flight = new Flight(airline, originAirport, destinationAirport, new DateTime(3000, 12, 1), TestConstants.FlightId);
+            Flight flight = new Flight(airline, originAirport, destinationAirport, DateTime.Now.AddYears(100), TestConstants.FlightId);
 
-            Flight fullFlight = new Flight(airline, originAirport, destinationAirport, new DateTime(3000, 12, 1), TestConstants.FullFlight);
+            Flight fullFlight = new Flight(airline, originAirport, destinationAirport, DateTime.Now.AddYears(100), TestConstants.FullFlight);
 
             fullFlight.Sections.Add(SeatClass.first.ToString() ,new FlightSection(TestConstants.FlightSectionRows, TestConstants.FlightSectionColumns, SeatClass.first));
 

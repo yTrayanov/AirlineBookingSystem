@@ -4,8 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    public class Flight:BaseModel
+    public class Flight : BaseModel
     {
         private DateTime _departureDate;
 
@@ -28,11 +27,11 @@
         public Airline Airline { get; set; }
         public Airport OriginAirport { get; set; }
 
-        
+
         [NotEqual(nameof(OriginAirport))]
         public Airport DestinationAirport { get; set; }
 
-        public Dictionary<string ,FlightSection> Sections { get; set; }
+        public Dictionary<string, FlightSection> Sections { get; set; }
 
 
         [NotPastDate]
@@ -48,17 +47,13 @@
         {
             get
             {
-                if (this.Sections.Any())
+                foreach (var section in this.Sections.Values)
                 {
-                    foreach (var section in this.Sections.Values)
+                    if (section.hasAvailableSeats)
                     {
-                        if (section.hasAvailableSeats)
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
-
                 return false;
             }
         }

@@ -4,7 +4,7 @@
 
     public class NotEqualAttribute : ValidationAttribute
     {
-        private const string DefaultErrorMessage = "The value of {0} cannot be the same as the value of the {1}.";
+        private const string DefaultErrorMessage = "{0} cannot be the same as {1}.";
         public NotEqualAttribute(string otherProperty) : base(DefaultErrorMessage)
         {
             this.OtherProperty = otherProperty;
@@ -31,9 +31,9 @@
             return ValidationResult.Success;
         }
 
-        public override string FormatErrorMessage(string name)
+        public override string FormatErrorMessage(string currentPropertyName)
         {
-            return string.Format(this.ErrorMessageString, name, this.OtherProperty);
+            return string.Format(this.ErrorMessageString, currentPropertyName, this.OtherProperty);
         }
 
     }

@@ -3,7 +3,6 @@
     using AirlineBookingSystem.Data;
     using AirlineBookingSystem.Models;
     using System;
-    using System.Linq;
 
     public class SectionService : Service
     {
@@ -20,7 +19,10 @@
 
             FlightSection newSection = new FlightSection(rows, cols, seatClass);
 
-            AddNewSection(seatClass, flight, newSection);
+            this.ShouldContainKey(flight.Sections.Keys, seatClass.ToString(), false, "Section already exists");
+
+            flight.Sections.Add(seatClass.ToString(), newSection);
+
 
             return newSection;
         }
@@ -35,16 +37,11 @@
             try
             {
                 int col = (int)(colSymbol - 'A');
-                Seat seat = section.Seats[row - 1, col];
+                
+                section.BookSeat(row - 1, col);
 
-                if (seat.IsBooked)
-                {
-                    throw new ArgumentException($"Seat {seat.SeatNumber} is already booked");
-                }
 
-                seat.IsBooked = true;
-
-                return seat;
+                return section.Seats[row-1,col];
             }
             catch (IndexOutOfRangeException)
             {
@@ -54,48 +51,6 @@
             {
                 throw;
             }
-        }
-
-        public FlightSection AddSeatsToSection(string airlineName, string flightId, int extraRows, int extraCols, SeatClass seatClass)
-        {
-            var flight = this._flightService.GetFlightByIdAndAirline(flightId, airlineName);
-
-            this.ShouldContainKey(flight.Sections.Keys, seatClass.ToString(), true, $"Flight doesn't have {seatClass} section");
-
-            var oldSection = flight.Sections[seatClass.ToString()];
-
-            if (extraRows == 0 && extraCols == 0)
-            {
-                throw new ArgumentException("Addictional rows and cols should be greater than 0");
-            }
-
-            var newRows = oldSection.Seats.GetLength(0) + extraRows;
-            var newCols = oldSection.Seats.GetLength(1) + extraCols;
-
-
-            var newSection = new FlightSection(newRows, newCols, oldSection.SeatClass);
-
-            flight.Sections.Remove(seatClass.ToString());
-
-            AddNewSection(newSection.SeatClass, flight, newSection);
-
-
-            for (int row = 0; row < oldSection.Seats.GetLength(0); row++)
-            {
-                for (int col = 0; col < oldSection.Seats.GetLength(1); col++)
-                {
-                    newSection.Seats[row, col] = oldSection.Seats[row, col];
-                }
-            }
-
-            return newSection;
-        }
-
-        private void AddNewSection(SeatClass seatClass, Flight flight, FlightSection section)
-        {
-            this.ShouldContainKey(flight.Sections.Keys, seatClass.ToString(), false, "Section already exists");
-
-            flight.Sections.Add(seatClass.ToString(), section);
         }
     }
 }

@@ -6,15 +6,18 @@
 
     public class FlightSection : BaseModel
     {
+        private int availableSeatsCount;
         public FlightSection(int rows, int columns, SeatClass seatClass)
         {
             this.Rows = rows;
             this.Columns = columns;
             this.SeatClass = seatClass;
+            this.availableSeatsCount = rows * columns;
             this.Validate();
             GenerateSeats();
         }
 
+        
 
         [Key]
         public int Id { get; set; }
@@ -31,22 +34,24 @@
 
         public SeatClass SeatClass { get; set; }
 
+
         public bool hasAvailableSeats
         {
             get
             {
-                for (int row = 0; row < this.Seats.GetLength(0); row++)
-                {
-                    for (int col = 0; col < this.Seats.GetLength(1); col++)
-                    {
-                        if (!this.Seats[row, col].IsBooked)
-                        {
-                            return true;
-                        }
-                    }
-                }
-                return false;
+                return this.availableSeatsCount > 0;
             }
+        }
+
+        public void BookSeat(int row , int col)
+        {
+            if (this.Seats[row, col].IsBooked)
+            {
+                throw new ArgumentException($"Seat {this.Seats[row, col].SeatNumber} is already booked");
+            }
+
+            this.Seats[row, col].IsBooked = true;
+            this.availableSeatsCount--;
         }
 
         private void GenerateSeats()
@@ -60,8 +65,8 @@
                     this.Seats[row, col] = new Seat(row + 1, Convert.ToChar(col + 'A'));
                 }
             }
-
         }
+
 
     }
 }
